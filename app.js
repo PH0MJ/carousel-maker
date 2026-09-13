@@ -28,6 +28,13 @@
       bgApplyLabel: 'Apply Photo To:',
       bgScopeCurrent: 'This Slide Only',
       bgScopeAll: 'All Slides',
+      bgFitLabel: 'Photo Scaling:',
+      bgFitCover: 'Fill Canvas',
+      bgFitContain: 'Fit Entire Photo',
+      bgPosLabel: 'Focal Point:',
+      bgPosTop: 'Top',
+      bgPosCenter: 'Center',
+      bgPosBottom: 'Bottom',
       optionalBadge: 'Optional',
       quickSelect: 'Quick Select',
       uploadClickText: 'Upload background image',
@@ -118,6 +125,13 @@
       bgApplyLabel: 'تطبيق الصورة على:',
       bgScopeCurrent: 'هذه الشريحة فقط',
       bgScopeAll: 'جميع الشرائح',
+      bgFitLabel: 'تناسب الصورة:',
+      bgFitCover: 'ملء التصميم',
+      bgFitContain: 'إظهار الصورة كاملة',
+      bgPosLabel: 'تركيز الصورة:',
+      bgPosTop: 'أعلى',
+      bgPosCenter: 'وسط',
+      bgPosBottom: 'أسفل',
       optionalBadge: 'اختياري',
       quickSelect: 'اختيار سريع',
       uploadClickText: 'انقر لرفع صورة الخلفية',
@@ -203,6 +217,8 @@
     theme: 'theme-royal-navy',
     bgImage: null,
     bgImageScope: 'current', // 'current' | 'all'
+    bgFit: 'cover', // 'cover' | 'contain'
+    bgPos: 'center', // 'top' | 'center' | 'bottom'
     bgOverlayDarkness: 45, // 0 - 90 %
     logoSrc: 'assets/logos/ima-crest-clean.png',
     logoPos: 'logo-pos-top-left',
@@ -223,6 +239,8 @@
       template,
       bgImage: null,
       bgFileName: '',
+      bgFit: 'cover',
+      bgPos: 'center',
       badge: t.defaultBadge,
       title: t.defaultTitle,
       subtitle: t.defaultSubtitle,
@@ -339,6 +357,9 @@
     uploadThumbPreview: document.getElementById('upload-thumb-preview'),
     uploadFileName: document.getElementById('upload-file-name'),
     btnRemoveBgImg: document.getElementById('btn-remove-bg-img'),
+    bgAdjustControls: document.getElementById('bg-adjust-controls'),
+    bgFitBtns: document.querySelectorAll('[data-bgfit]'),
+    bgPosBtns: document.querySelectorAll('[data-bgpos]'),
     sliderOverlay: document.getElementById('slider-overlay'),
     overlayValueDisplay: document.getElementById('overlay-value-display'),
     themeChips: document.querySelectorAll('.theme-chip'),
@@ -673,8 +694,8 @@
 
       if (slide.bgImage) {
         thumb.style.backgroundImage = `linear-gradient(rgba(2, 18, 32, 0.45), rgba(2, 18, 32, 0.65)), url(${slide.bgImage})`;
-        thumb.style.backgroundSize = 'cover';
-        thumb.style.backgroundPosition = 'center';
+        thumb.style.backgroundSize = slide.bgFit || 'cover';
+        thumb.style.backgroundPosition = `center ${slide.bgPos || 'center'}`;
       } else {
         thumb.style.backgroundImage = 'none';
       }
@@ -718,8 +739,7 @@
     DOM.slideHeader.classList.add(state.logoPos);
 
     // Logo size classes on artboard
-    const sizeClasses = ['logo-size-small', 'logo-size-medium', 'logo-size-large', 'logo-size-hero'];
-    DOM.artboard.classList.remove(...sizeClasses);
+    DOM.artboard.classList.remove('logo-size-small', 'logo-size-medium', 'logo-size-large', 'logo-size-hero');
     DOM.artboard.classList.add(state.logoSize);
 
     // Sync UI buttons
@@ -739,16 +759,40 @@
   function updateBackground() {
     const currentSlide = state.slides[state.currentSlideIndex];
     const bg = currentSlide ? currentSlide.bgImage : state.bgImage;
+    const fit = (currentSlide && currentSlide.bgFit) ? currentSlide.bgFit : (state.bgFit || 'cover');
+    const pos = (currentSlide && currentSlide.bgPos) ? currentSlide.bgPos : (state.bgPos || 'center');
 
     if (bg) {
       DOM.artboardBgMedia.style.backgroundImage = `url(${bg})`;
+      DOM.artboardBgMedia.style.backgroundSize = fit;
+      DOM.artboardBgMedia.style.backgroundPosition = `center ${pos}`;
       DOM.uploadPreviewBar.classList.remove('hidden');
       DOM.uploadThumbPreview.style.backgroundImage = `url(${bg})`;
+      DOM.uploadThumbPreview.style.backgroundSize = fit;
+      DOM.uploadThumbPreview.style.backgroundPosition = `center ${pos}`;
       DOM.uploadFileName.textContent = (currentSlide && currentSlide.bgFileName) || 'image.jpg';
+      if (DOM.bgAdjustControls) {
+        DOM.bgAdjustControls.classList.remove('hidden');
+      }
     } else {
       DOM.artboardBgMedia.style.backgroundImage = 'none';
       DOM.uploadPreviewBar.classList.add('hidden');
       DOM.uploadThumbPreview.style.backgroundImage = 'none';
+      if (DOM.bgAdjustControls) {
+        DOM.bgAdjustControls.classList.add('hidden');
+      }
+    }
+
+    if (DOM.bgFitBtns) {
+      DOM.bgFitBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-bgfit') === fit);
+      });
+    }
+
+    if (DOM.bgPosBtns) {
+      DOM.bgPosBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-bgpos') === pos);
+      });
     }
 
     const opacity = state.bgOverlayDarkness / 100;
@@ -935,6 +979,10 @@
       );
     }
 
+    if (DOM.carouselStripContainer) {
+      DOM.carouselStripContainer.classList.toggle('ratio-portrait', state.ratio === 'portrait');
+    }
+
     renderCurrentSlide();
     updateThumbnails();
     adjustCanvasScale();
@@ -957,6 +1005,8 @@
       if (existingWithBg) {
         newSlide.bgImage = existingWithBg.bgImage;
         newSlide.bgFileName = existingWithBg.bgFileName;
+        newSlide.bgFit = existingWithBg.bgFit || state.bgFit || 'cover';
+        newSlide.bgPos = existingWithBg.bgPos || state.bgPos || 'center';
       }
     }
 
@@ -1226,16 +1276,26 @@
       state.ratio = 'square';
       DOM.btnRatioSquare.classList.add('active');
       DOM.btnRatioPortrait.classList.remove('active');
+      if (DOM.carouselStripContainer) {
+        DOM.carouselStripContainer.classList.remove('ratio-portrait');
+      }
       renderCurrentSlide();
+      updateThumbnails();
       adjustCanvasScale();
+      showToast(state.lang === 'ar' ? 'الأبعاد: 1:1 مربع (1080×1080)' : 'Dimensions: 1:1 Square (1080×1080)');
     });
 
     DOM.btnRatioPortrait.addEventListener('click', () => {
       state.ratio = 'portrait';
       DOM.btnRatioPortrait.classList.add('active');
       DOM.btnRatioSquare.classList.remove('active');
+      if (DOM.carouselStripContainer) {
+        DOM.carouselStripContainer.classList.add('ratio-portrait');
+      }
       renderCurrentSlide();
+      updateThumbnails();
       adjustCanvasScale();
+      showToast(state.lang === 'ar' ? 'الأبعاد: 4:5 طولي (1080×1350)' : 'Dimensions: 4:5 Portrait (1080×1350)');
     });
 
     // Language Toggle
@@ -1400,6 +1460,42 @@
       updateBackground();
       updateThumbnails();
     });
+
+    // Background Image Fit (Fill Canvas vs Fit Entire Photo)
+    if (DOM.bgFitBtns) {
+      DOM.bgFitBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const fit = btn.getAttribute('data-bgfit');
+          state.bgFit = fit;
+          if (state.mode === 'carousel' && state.bgImageScope === 'all') {
+            state.slides.forEach(s => s.bgFit = fit);
+          } else {
+            const cur = state.slides[state.currentSlideIndex];
+            if (cur) cur.bgFit = fit;
+          }
+          updateBackground();
+          updateThumbnails();
+        });
+      });
+    }
+
+    // Background Image Focal Point (Top, Center, Bottom)
+    if (DOM.bgPosBtns) {
+      DOM.bgPosBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pos = btn.getAttribute('data-bgpos');
+          state.bgPos = pos;
+          if (state.mode === 'carousel' && state.bgImageScope === 'all') {
+            state.slides.forEach(s => s.bgPos = pos);
+          } else {
+            const cur = state.slides[state.currentSlideIndex];
+            if (cur) cur.bgPos = pos;
+          }
+          updateBackground();
+          updateThumbnails();
+        });
+      });
+    }
 
     // Darkness Overlay Slider
     DOM.sliderOverlay.addEventListener('input', (e) => {

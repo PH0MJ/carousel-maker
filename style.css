@@ -375,6 +375,7 @@ body.mode-carousel .poster-only {
   background-color: var(--ima-navy);
   flex-shrink: 0;
   margin: 0 auto;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .canvas-nav-arrow {
@@ -438,12 +439,77 @@ body.mode-carousel .poster-only {
   flex-direction: column;
   background-color: var(--ima-navy);
   box-sizing: border-box;
+  transition: height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .artboard.ratio-portrait {
   height: 1350px !important;
   min-height: 1350px !important;
   max-height: 1350px !important;
+}
+
+/* Responsive portrait adaptations for 1080x1350 */
+.artboard.ratio-portrait .artboard-content {
+  padding: 105px 85px 95px 85px;
+}
+
+.artboard.ratio-portrait .slide-body {
+  gap: 28px;
+}
+
+.artboard.ratio-portrait .slide-title.font-size-hero {
+  font-size: 80px;
+  line-height: 1.12;
+}
+
+.artboard.ratio-portrait .slide-title.font-size-balanced {
+  font-size: 68px;
+  line-height: 1.15;
+}
+
+.artboard.ratio-portrait .slide-title.font-size-compact {
+  font-size: 54px;
+  line-height: 1.2;
+}
+
+.artboard.ratio-portrait .slide-subtitle {
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.artboard.ratio-portrait .slide-modular-block {
+  margin-top: 24px;
+}
+
+.artboard.ratio-portrait .stat-card {
+  padding: 28px 18px;
+  gap: 12px;
+}
+
+.artboard.ratio-portrait .quote-container {
+  padding: 36px 40px;
+  margin: 15px 0;
+}
+
+.artboard.ratio-portrait .outro-cta-card {
+  padding: 38px 36px;
+  gap: 18px;
+}
+
+.artboard.ratio-portrait .event-meta-grid {
+  gap: 18px;
+}
+
+.artboard.ratio-portrait .event-card {
+  padding: 24px 20px;
+}
+
+.artboard.ratio-portrait .points-list {
+  gap: 20px;
+}
+
+.artboard.ratio-portrait .point-card {
+  padding: 22px 24px;
 }
 
 .artboard-bg-media {
@@ -453,6 +519,7 @@ body.mode-carousel .poster-only {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
+  transition: background-size 0.25s ease, background-position 0.25s ease;
 }
 
 .artboard-bg-overlay {
@@ -1189,6 +1256,12 @@ body.lang-ar .slide-header.logo-pos-top-right {
   box-shadow: 0 0 10px rgba(6, 158, 133, 0.4);
 }
 
+.carousel-strip-container.ratio-portrait .carousel-thumb-card {
+  width: 52px;
+  height: 65px;
+  min-width: 52px;
+}
+
 .btn-add-slide {
   border: 1px dashed var(--ima-teal);
   background: rgba(6, 158, 133, 0.08);
@@ -1434,6 +1507,51 @@ body.lang-ar .slide-header.logo-pos-top-right {
 .btn-remove-img:hover {
   background: rgba(239, 68, 68, 0.2);
   color: #ef4444;
+}
+
+/* Background Image Responsive Scaling & Focal Point */
+.bg-adjust-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--ima-surface-card);
+  border: 1px solid var(--ima-border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-top: 8px;
+  transition: var(--transition-fast);
+}
+
+.bg-adjust-controls.hidden {
+  display: none !important;
+}
+
+.bg-adjust-controls .control-subrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.control-label-sm {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ima-text-muted);
+  white-space: nowrap;
+}
+
+.bg-fit-segmented,
+.bg-pos-segmented {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.bg-fit-segmented .segment-btn,
+.bg-pos-segmented .segment-btn {
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
 }
 
 .slider-control {

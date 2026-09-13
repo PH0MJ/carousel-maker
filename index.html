@@ -389,6 +389,25 @@
                 </div>
                 <button class="btn-remove-img" id="btn-remove-bg-img" title="Remove Photo">✕</button>
               </div>
+
+              <!-- Background Image Responsive Fit & Position Controls -->
+              <div class="bg-adjust-controls hidden" id="bg-adjust-controls">
+                <div class="control-subrow">
+                  <span class="control-label-sm" data-i18n="bgFitLabel">Photo Scaling:</span>
+                  <div class="btn-segmented bg-fit-segmented" id="bg-fit-segmented">
+                    <button type="button" class="segment-btn active" data-bgfit="cover" data-i18n="bgFitCover">Fill Canvas</button>
+                    <button type="button" class="segment-btn" data-bgfit="contain" data-i18n="bgFitContain">Fit Entire Photo</button>
+                  </div>
+                </div>
+                <div class="control-subrow">
+                  <span class="control-label-sm" data-i18n="bgPosLabel">Focal Point:</span>
+                  <div class="btn-segmented bg-pos-segmented" id="bg-pos-segmented">
+                    <button type="button" class="segment-btn" data-bgpos="top" data-i18n="bgPosTop">Top</button>
+                    <button type="button" class="segment-btn active" data-bgpos="center" data-i18n="bgPosCenter">Center</button>
+                    <button type="button" class="segment-btn" data-bgpos="bottom" data-i18n="bgPosBottom">Bottom</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Darkness Overlay Slider -->
