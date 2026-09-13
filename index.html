@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IMA UK • Poster & Carousel Maker</title>
+  <meta name="description" content="Super simple, mobile-first social poster and carousel generator for Iraqi Medical Association UK & Europe.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logos/ima-crest.png">
+
+  <!-- Google Fonts: Sora (EN/Latin) & IBM Plex Sans Arabic (Geometric Arabic matching Sora) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Vendor Scripts for Client-Side High-Res PNG & ZIP Generation -->
+  <script src="assets/vendor/html2canvas.min.js"></script>
+  <script src="assets/vendor/jszip.min.js"></script>
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-poster lang-en">
+
+  <!-- ============================================================
+       TOP APPLICATION BAR
+  ============================================================ -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge" id="btn-home" title="Switch Mode / New Project">
+        <img src="assets/logos/ima-crest.png" alt="IMA UK Crest" class="brand-crest">
+        <div class="brand-titles">
+          <span class="brand-name">IMA UK</span>
+          <span class="brand-product" id="product-title-badge">Studio</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode Selector Pills -->
+    <div class="mode-pill-container" role="tablist">
+      <button class="mode-pill active" id="pill-poster" data-mode="poster" title="Single Slide Post">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="tab-label" data-i18n="posterMode">Poster</span>
+      </button>
+      <button class="mode-pill" id="pill-carousel" data-mode="carousel" title="Multi-Slide Carousel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="14" height="18" rx="2"/><rect x="8" y="3" width="14" height="18" rx="2"/></svg>
+        <span class="tab-label" data-i18n="carouselMode">Carousel</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <!-- Aspect Ratio Switcher -->
+      <div class="ratio-toggle" title="Select Canvas Dimensions">
+        <button class="ratio-btn active" id="btn-ratio-square" data-ratio="square">1:1</button>
+        <button class="ratio-btn" id="btn-ratio-portrait" data-ratio="portrait">4:5</button>
+      </div>
+
+      <!-- Language Switcher -->
+      <button class="lang-toggle-btn" id="btn-lang-toggle" title="Switch English / Arabic">
+        <span class="lang-indicator" id="lang-current">EN</span>
+        <span class="lang-arrow">⇄</span>
+        <span class="lang-alt" id="lang-target">عربي</span>
+      </button>
+
+      <!-- Primary Export Actions -->
+      <div class="export-group">
+        <button class="btn btn-primary" id="btn-export-single" title="Export High-Res PNG">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="btn-text" data-i18n="exportPng">Export PNG</span>
+        </button>
+
+        <button class="btn btn-secondary carousel-only" id="btn-export-all-zip" title="Export All Slides as ZIP">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span class="btn-text" data-i18n="exportAllZip">Export ZIP</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN WORKSPACE AREA
+  ============================================================ -->
+  <main class="main-workspace">
+    
+    <!-- LEFT / CENTER: THE LIVE CANVAS STAGE -->
+    <section class="stage-container" id="stage-container">
+      
+      <!-- Quick Floating Canvas Bar -->
+      <div class="canvas-quick-bar">
+        <span class="canvas-dimension-badge" id="canvas-dim-text">1080 × 1080 px</span>
+        <div class="quick-helpers">
+          <span class="hint-text" data-i18n="clickToEditHint">💡 Click any text directly to edit</span>
+        </div>
+      </div>
+
+      <!-- Scaled Wrapper (keeps aspect ratio & fits viewport) -->
+      <div class="canvas-viewport-wrapper" id="canvas-wrapper">
+        
+        <!-- ============================================================
+             THE 1080px VIRTUAL ARTBOARD (Rendered by html2canvas)
+        ============================================================ -->
+        <div class="artboard ratio-square theme-royal-navy" id="artboard" data-ratio="square">
+          
+          <!-- Layer 1: Background Media & Overlay -->
+          <div class="artboard-bg-media" id="artboard-bg-media"></div>
+          <div class="artboard-bg-overlay" id="artboard-bg-overlay"></div>
+
+          <!-- Decorative Brand Light/Graphic Glow -->
+          <div class="artboard-decor-glow"></div>
+
+          <!-- Layer 2: Slide Content Foreground -->
+          <div class="artboard-content" id="artboard-content">
+            
+            <!-- Slide Header: Logo & Tag Badge -->
+            <header class="slide-header logo-pos-top-left" id="slide-header">
+              <div class="slide-logo-wrapper" id="slide-logo-wrapper">
+                <img src="assets/logos/ima-crest.png" alt="IMA UK" class="slide-logo-img" id="slide-logo-img">
+              </div>
+              <div class="slide-badge-wrapper" id="slide-badge-wrapper">
+                <span class="slide-badge" contenteditable="true" spellcheck="false" id="slide-badge" data-placeholder="ANNOUNCEMENT">IMA UK ANNOUNCEMENT</span>
+              </div>
+            </header>
+
+            <!-- Slide Main Body: Headline & Subtitle -->
+            <div class="slide-body" id="slide-body">
+              <h1 class="slide-title" contenteditable="true" spellcheck="false" id="slide-title" data-placeholder="Enter Headline Here...">Annual Medical Conference 2026</h1>
+              <p class="slide-subtitle" contenteditable="true" spellcheck="false" id="slide-subtitle" data-placeholder="Enter description or key takeaways here...">Join distinguished healthcare leaders, researchers, and clinicians across the UK & Europe for groundbreaking sessions, networking, and medical innovation.</p>
+
+              <!-- Dynamic Modular Block (Template-based) -->
+              <div class="slide-modular-block layout-event" id="slide-modular-block">
+                <!-- Injected dynamically via JS based on template selection -->
+              </div>
+            </div>
+
+            <!-- Slide Footer: Social Handle & Carousel Indicator -->
+            <footer class="slide-footer" id="slide-footer">
+              <div class="slide-footer-brand">
+                <span class="footer-handle" contenteditable="true" spellcheck="false" id="footer-handle">@IMA_UK_Europe</span>
+                <span class="footer-sep">•</span>
+                <span class="footer-url" contenteditable="true" spellcheck="false" id="footer-url">ima-uk.org</span>
+              </div>
+
+              <!-- Carousel Slide Indicator (Only active in carousel mode) -->
+              <div class="slide-footer-nav carousel-only" id="slide-footer-nav">
+                <span class="slide-counter-badge" id="slide-counter-badge">01 / 03</span>
+                <span class="slide-swipe-badge" id="slide-swipe-badge" data-i18n="swipeHint">Swipe ➔</span>
+              </div>
+            </footer>
+
+          </div><!-- /artboard-content -->
+        </div><!-- /artboard -->
+
+        <!-- Carousel On-Canvas Navigation Arrows -->
+        <button class="canvas-nav-arrow nav-prev carousel-only" id="btn-prev-slide" title="Previous Slide" disabled>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="canvas-nav-arrow nav-next carousel-only" id="btn-next-slide" title="Next Slide">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+      </div><!-- /canvas-viewport-wrapper -->
+
+      <!-- Bottom Carousel Slides Strip (Carousel Mode Only) -->
+      <div class="carousel-strip-container carousel-only" id="carousel-strip-container">
+        <div class="carousel-strip-header">
+          <span class="strip-title" data-i18n="slidesLabel">Slides Management</span>
+          <div class="strip-actions">
+            <button class="btn btn-sm btn-outline" id="btn-duplicate-slide" title="Duplicate current slide">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span data-i18n="duplicateSlide">Duplicate</span>
+            </button>
+            <button class="btn btn-sm btn-outline btn-danger" id="btn-delete-slide" title="Delete current slide">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              <span data-i18n="deleteSlide">Delete</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel-thumbnails-list" id="carousel-thumbnails-list">
+          <!-- Thumbnail cards dynamically injected by JS -->
+        </div>
+
+        <button class="btn btn-add-slide" id="btn-add-slide">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span data-i18n="addNewSlide">Add Slide</span>
+        </button>
+      </div>
+
+    </section><!-- /stage-container -->
+
+
+    <!-- ============================================================
+         RIGHT / BOTTOM DOCK: CONTROLS & BRAND CUSTOMIZATION
+    ============================================================ -->
+    <aside class="control-panel" id="control-panel">
+      
+      <!-- Control Panel Tabs -->
+      <nav class="panel-tabs" role="tablist">
+        <button class="panel-tab active" data-tab="style" role="tab" title="Colors & Background">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span data-i18n="tabStyle">Style</span>
+        </button>
+        <button class="panel-tab" data-tab="layout" role="tab" title="Layout Templates">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          <span data-i18n="tabLayout">Layout</span>
+        </button>
+        <button class="panel-tab" data-tab="brand" role="tab" title="Official Brand Identity">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span data-i18n="tabBrand">Brand</span>
+        </button>
+      </nav>
+
+      <!-- Panel Tab Contents -->
+      <div class="panel-content-area">
+
+        <!-- TAB 1: STYLE & BACKGROUND -->
+        <div class="tab-pane active" id="pane-style">
+          
+          <!-- Background Image Upload -->
+          <div class="control-section">
+            <label class="section-title">
+              <span data-i18n="bgImageTitle">Background Photo</span>
+              <span class="badge-optional" data-i18n="optionalBadge">Optional</span>
+            </label>
+            
+            <div class="upload-box-wrapper">
+              <input type="file" id="input-bg-upload" accept="image/*" class="sr-only">
+              <label for="input-bg-upload" class="upload-dropzone" id="upload-dropzone">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <div class="upload-text">
+                  <strong data-i18n="uploadClickText">Upload background image</strong>
+                  <span data-i18n="uploadDragText">or drag and drop photo here</span>
+                </div>
+              </label>
+
+              <!-- Uploaded thumbnail preview & remove -->
+              <div class="upload-preview-bar hidden" id="upload-preview-bar">
+                <div class="preview-thumb" id="upload-thumb-preview"></div>
+                <div class="preview-info">
+                  <span class="file-name" id="upload-file-name">image.jpg</span>
+                  <span class="file-status" data-i18n="photoActive">Background Active</span>
+                </div>
+                <button class="btn-remove-img" id="btn-remove-bg-img" title="Remove Photo">✕</button>
+              </div>
+            </div>
+
+            <!-- Darkness Overlay Slider -->
+            <div class="slider-control" id="overlay-slider-control">
+              <div class="slider-header">
+                <span data-i18n="overlayDarkness">Darkness / Readability Tint</span>
+                <span class="slider-value" id="overlay-value-display">45%</span>
+              </div>
+              <input type="range" id="slider-overlay" min="0" max="90" value="45" class="range-slider">
+            </div>
+          </div>
+
+          <!-- Brand Colors & Gradients (Fallback & Atmosphere) -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="brandColorTheme">Brand Color Themes</label>
+            <div class="theme-presets-grid" id="theme-presets-grid">
+              <!-- Preset 1: IMA Royal Navy -->
+              <button class="theme-chip active" data-theme="theme-royal-navy" style="--chip-bg: linear-gradient(135deg, #00336a, #001a35);" title="IMA Deep Navy">
+                <span class="theme-name">Royal Navy</span>
+              </button>
+              <!-- Preset 2: Signature Dual (Navy to Teal) -->
+              <button class="theme-chip" data-theme="theme-signature-dual" style="--chip-bg: linear-gradient(135deg, #00336a, #069e85);" title="Signature Navy & Teal">
+                <span class="theme-name">Dual Brand</span>
+              </button>
+              <!-- Preset 3: Clinical Emerald Teal -->
+              <button class="theme-chip" data-theme="theme-clinical-teal" style="--chip-bg: linear-gradient(135deg, #069e85, #024b3f);" title="Clinical Teal">
+                <span class="theme-name">Emerald Teal</span>
+              </button>
+              <!-- Preset 4: Midnight Dark -->
+              <button class="theme-chip" data-theme="theme-midnight-dark" style="--chip-bg: #021220;" title="Midnight Dark">
+                <span class="theme-name">Midnight</span>
+              </button>
+              <!-- Preset 5: Clean Medical White -->
+              <button class="theme-chip" data-theme="theme-clean-white" style="--chip-bg: #ffffff; --chip-border: #cbd5e1; --chip-text: #00336a;" title="Clean White">
+                <span class="theme-name">Clean White</span>
+              </button>
+              <!-- Preset 6: Deep Oceanic Glow -->
+              <button class="theme-chip" data-theme="theme-oceanic-glow" style="--chip-bg: radial-gradient(circle at top right, #069e85 0%, #00264d 85%);" title="Oceanic Glow">
+                <span class="theme-name">Teal Glow</span>
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /pane-style -->
+
+
+        <!-- TAB 2: LAYOUT & TEMPLATES -->
+        <div class="tab-pane" id="pane-layout">
+          
+          <div class="control-section">
+            <label class="section-title" data-i18n="slideTemplate">Slide Template</label>
+            <div class="template-selector-grid">
+              
+              <button class="template-btn active" data-template="layout-announcement">
+                <div class="tpl-icon">📢</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplAnnouncement">Announcement</strong>
+                  <span data-i18n="tplAnnouncementDesc">Title, subtitle, and badge</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-event">
+                <div class="tpl-icon">📅</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplEvent">Event / Meeting</strong>
+                  <span data-i18n="tplEventDesc">Date, venue, & time badges</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-checklist">
+                <div class="tpl-icon">✅</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplKeyPoints">Key Points / Agenda</strong>
+                  <span data-i18n="tplKeyPointsDesc">3 bulleted highlight cards</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-quote">
+                <div class="tpl-icon">💬</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplQuote">Quote / Statement</strong>
+                  <span data-i18n="tplQuoteDesc">Key quotation and author</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-outro">
+                <div class="tpl-icon">🚀</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplOutro">Call to Action</strong>
+                  <span data-i18n="tplOutroDesc">Register, follow, & contact</span>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Visibility Toggles -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="elementsVisibility">Elements</label>
+            <div class="toggle-list">
+              <label class="toggle-row">
+                <span data-i18n="showBadgeToggle">Category Tag Badge</span>
+                <input type="checkbox" id="toggle-badge" checked class="custom-switch">
+              </label>
+              <label class="toggle-row">
+                <span data-i18n="showFooterToggle">Footer & Handles</span>
+                <input type="checkbox" id="toggle-footer" checked class="custom-switch">
+              </label>
+            </div>
+          </div>
+
+        </div><!-- /pane-layout -->
+
+
+        <!-- TAB 3: OFFICIAL BRAND IDENTITY -->
+        <div class="tab-pane" id="pane-brand">
+          
+          <!-- Logo Selection -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="officialLogo">Official Logo</label>
+            <div class="logo-variants-grid">
+              
+              <button class="logo-choice-btn active" data-logo="assets/logos/ima-crest.png" title="Official Gold/Navy Crest">
+                <img src="assets/logos/ima-crest.png" alt="Official Crest">
+                <span>IMA Crest</span>
+              </button>
+
+              <button class="logo-choice-btn" data-logo="assets/logos/logo-full.png" title="Full Brand Logo">
+                <img src="assets/logos/logo-full.png" alt="Full Logo">
+                <span>Brand Mark</span>
+              </button>
+
+              <button class="logo-choice-btn" data-logo="assets/logos/logo-emblem.png" title="Emblem Mark">
+                <img src="assets/logos/logo-emblem.png" alt="Emblem">
+                <span>Emblem</span>
+              </button>
+
+              <button class="logo-choice-btn" data-logo="none" title="Hide Logo">
+                <div class="no-logo-icon">🚫</div>
+                <span>None</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Logo Position -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="logoPosition">Logo Placement</label>
+            <div class="btn-segmented">
+              <button class="segment-btn active" data-pos="logo-pos-top-left" data-i18n="posLeft">Top Left</button>
+              <button class="segment-btn" data-pos="logo-pos-top-center" data-i18n="posCenter">Center</button>
+              <button class="segment-btn" data-pos="logo-pos-top-right" data-i18n="posRight">Top Right</button>
+            </div>
+          </div>
+
+          <!-- Brand Information Note -->
+          <div class="brand-note-card">
+            <strong>Iraqi Medical Association UK & Europe</strong>
+            <p>Font: <code>Sora</code> (Latin & Arabic) • Primary: <code>#00336a</code> • Teal: <code>#069e85</code></p>
+          </div>
+
+        </div><!-- /pane-brand -->
+
+      </div><!-- /panel-content-area -->
+
+    </aside><!-- /control-panel -->
+
+  </main>
+
+
+  <!-- ============================================================
+       MOBILE BOTTOM NAVIGATION BAR (Visible only on small screens)
+  ============================================================ -->
+  <nav class="mobile-bottom-dock">
+    <button class="dock-btn active" data-mobile-tab="stage" id="dock-btn-stage">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>Canvas</span>
+    </button>
+    <button class="dock-btn" data-mobile-tab="style" id="dock-btn-style">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+      <span>Style</span>
+    </button>
+    <button class="dock-btn" data-mobile-tab="layout" id="dock-btn-layout">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <span>Layout</span>
+    </button>
+    <button class="dock-btn" data-mobile-tab="brand" id="dock-btn-brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Brand</span>
+    </button>
+    <button class="dock-btn highlight" id="dock-btn-export">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Export</span>
+    </button>
+  </nav>
+
+
+  <!-- ============================================================
+       FIRST SCREEN: MODE SELECTION MODAL
+  ============================================================ -->
+  <div class="welcome-modal-overlay" id="welcome-modal">
+    <div class="welcome-modal-card">
+      <div class="welcome-header">
+        <img src="assets/logos/ima-crest.png" alt="IMA UK Crest" class="welcome-crest">
+        <h2>IMA UK Media Studio</h2>
+        <p>Create professional branded social posters & swipeable carousels in seconds.</p>
+      </div>
+
+      <div class="mode-cards-grid">
+        
+        <!-- CARD 1: POSTER MAKER -->
+        <div class="mode-card" id="card-select-poster">
+          <div class="card-badge">Single Slide</div>
+          <div class="card-icon-illustration">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <h3>Poster Maker</h3>
+          <p>Design single announcements, event flyers, executive quotes, and key news.</p>
+          <ul class="card-feature-list">
+            <li>✓ 1 High-Impact Slide</li>
+            <li>✓ Instant PNG Export</li>
+            <li>✓ 1:1 Square & 4:5 Portrait</li>
+          </ul>
+          <button class="btn btn-primary btn-block">Start Poster Maker ➔</button>
+        </div>
+
+        <!-- CARD 2: CAROUSEL MAKER -->
+        <div class="mode-card featured" id="card-select-carousel">
+          <div class="card-badge highlight">Multi-Slide</div>
+          <div class="card-icon-illustration">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="13" height="18" rx="2.5"/><rect x="9" y="3" width="13" height="18" rx="2.5"/></svg>
+          </div>
+          <h3>Carousel Maker</h3>
+          <p>Create swipeable educational posts, meeting recaps, agendas, and stories.</p>
+          <ul class="card-feature-list">
+            <li>✓ Multiple Slides (2 to 10)</li>
+            <li>✓ Slide Counter (01/05) & Swipes</li>
+            <li>✓ Batch Export All as ZIP</li>
+          </ul>
+          <button class="btn btn-primary btn-block">Start Carousel Maker ➔</button>
+        </div>
+
+      </div>
+
+      <div class="welcome-footer">
+        <span>Official Brand Fonts: <strong>Sora (English & Arabic)</strong> • Pure In-Browser Generator</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       EXPORT PROGRESS / TOAST NOTIFICATION
+  ============================================================ -->
+  <div class="export-overlay hidden" id="export-overlay">
+    <div class="export-dialog">
+      <div class="spinner-ring"></div>
+      <h3 id="export-status-title">Generating High-Resolution Media...</h3>
+      <p id="export-status-desc">Rendering crisp 1080px brand graphics</p>
+      <div class="export-progress-bar">
+        <div class="progress-fill" id="export-progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-notification" id="toast">Ready</div>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
