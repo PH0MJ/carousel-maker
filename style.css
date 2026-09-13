@@ -1,6 +1,6 @@
 /* ============================================================
    IMA UK • POSTER MAKER & CAROUSEL MAKER
-   Official Design System & Stylesheet
+   Official Design System & Stylesheet for Medical NGO
    Fonts: Sora (Latin/EN) & IBM Plex Sans Arabic (AR)
    Palette: Primary Navy #00336a, Clinical Teal #069e85
 ============================================================ */
@@ -364,6 +364,17 @@ body.mode-carousel .poster-only {
   flex: 1;
   min-height: 0;
   padding: 0.5rem 0;
+  overflow: visible;
+}
+
+.canvas-scaler-box {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-artboard);
+  border-radius: 12px;
+  background-color: var(--ima-navy);
+  flex-shrink: 0;
+  margin: 0 auto;
 }
 
 .canvas-nav-arrow {
@@ -373,7 +384,7 @@ body.mode-carousel .poster-only {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.85);
   border: 1px solid var(--ima-border);
   color: #ffffff;
   display: flex;
@@ -405,22 +416,34 @@ body.mode-carousel .poster-only {
   right: max(0.5rem, calc(50% - 310px));
 }
 
-/* ARTBOARD */
+/* ============================================================
+   ARTBOARD (Virtual 1080x1080 or 1080x1350 Rigid Box)
+============================================================ */
 .artboard {
-  position: relative;
-  width: 1080px;
-  height: 1080px;
-  transform-origin: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1080px !important;
+  min-width: 1080px !important;
+  max-width: 1080px !important;
+  height: 1080px !important;
+  min-height: 1080px !important;
+  max-height: 1080px !important;
+  flex: 0 0 1080px !important;
+  flex-shrink: 0 !important;
+  transform-origin: 0 0;
   overflow: hidden;
-  box-shadow: var(--shadow-artboard);
   user-select: none;
   display: flex;
   flex-direction: column;
   background-color: var(--ima-navy);
+  box-sizing: border-box;
 }
 
 .artboard.ratio-portrait {
-  height: 1350px;
+  height: 1350px !important;
+  min-height: 1350px !important;
+  max-height: 1350px !important;
 }
 
 .artboard-bg-media {
@@ -440,37 +463,27 @@ body.mode-carousel .poster-only {
   transition: background-color 0.2s ease;
 }
 
-.artboard-decor-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  top: -150px;
-  right: -150px;
-  background: radial-gradient(circle, rgba(6, 158, 133, 0.25) 0%, rgba(6, 158, 133, 0) 70%);
-  z-index: 2;
-  pointer-events: none;
-}
-
 .artboard-content {
   position: relative;
   z-index: 3;
   width: 100%;
   height: 100%;
-  padding: 85px 80px 75px 80px;
+  padding: 80px 80px 70px 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
 }
 
-/* Header */
+/* ------------------------------------------------------------
+   Slide Header (Logo, NGO Subtitle & Badge)
+------------------------------------------------------------ */
 .slide-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 90px;
+  min-height: 100px;
 }
 
 .slide-header.logo-pos-top-left {
@@ -491,14 +504,57 @@ body.mode-carousel .poster-only {
 .slide-logo-wrapper {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .slide-logo-img {
-  height: 82px;
   width: auto;
-  max-width: 240px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  transition: height 0.2s ease;
+}
+
+/* Logo Sizes */
+.artboard.logo-size-small .slide-logo-img {
+  height: 80px;
+}
+
+.artboard.logo-size-medium .slide-logo-img {
+  height: 115px;
+}
+
+.artboard.logo-size-large .slide-logo-img {
+  height: 150px;
+}
+
+.artboard.logo-size-hero .slide-logo-img {
+  height: 185px;
+}
+
+/* NGO Subtitle Lockup */
+.slide-ngo-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ngo-name {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  outline: none;
+  line-height: 1.2;
+}
+
+.ngo-sub {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ima-teal-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  outline: none;
 }
 
 .slide-badge-wrapper {
@@ -506,7 +562,7 @@ body.mode-carousel .poster-only {
 }
 
 .slide-badge {
-  background: rgba(6, 158, 133, 0.2);
+  background: rgba(6, 158, 133, 0.22);
   border: 1.5px solid var(--ima-teal-light);
   color: #ffffff;
   font-size: 20px;
@@ -519,22 +575,32 @@ body.mode-carousel .poster-only {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
 }
 
-/* Body */
+/* ------------------------------------------------------------
+   Slide Main Body (Title, Accent Divider & Subtitle)
+------------------------------------------------------------ */
 .slide-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 28px;
+  gap: 22px;
   margin: auto 0;
   max-width: 920px;
+  width: 100%;
+}
+
+.slide-accent-divider {
+  width: 72px;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ima-teal-light), var(--ima-teal));
+  box-shadow: 0 2px 8px rgba(6, 158, 133, 0.4);
 }
 
 .slide-title {
-  font-size: 64px;
   font-weight: 800;
-  line-height: 1.16;
   letter-spacing: -0.025em;
   color: #ffffff;
   outline: none;
@@ -542,22 +608,108 @@ body.mode-carousel .poster-only {
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
 }
 
+.slide-title.font-size-hero {
+  font-size: 74px;
+  line-height: 1.12;
+}
+
+.slide-title.font-size-balanced {
+  font-size: 62px;
+  line-height: 1.16;
+}
+
+.slide-title.font-size-compact {
+  font-size: 50px;
+  line-height: 1.22;
+}
+
 .slide-subtitle {
-  font-size: 29px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.9);
   outline: none;
   word-break: break-word;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
+/* ------------------------------------------------------------
+   Modular Block Templates
+------------------------------------------------------------ */
 .slide-modular-block {
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
 }
 
-/* Event template */
+/* 1. Humanitarian Mission Block [NEW] */
+.mission-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.mission-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 12px 20px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 600;
+  outline: none;
+}
+
+.mission-support-btn {
+  display: inline-flex;
+  background: linear-gradient(135deg, var(--ima-teal-light), var(--ima-teal));
+  color: #021220;
+  font-size: 22px;
+  font-weight: 800;
+  padding: 14px 34px;
+  border-radius: 999px;
+  outline: none;
+  box-shadow: 0 4px 18px rgba(6, 158, 133, 0.4);
+}
+
+/* 2. Impact & Numbers Block [NEW] */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  background: rgba(2, 18, 32, 0.6);
+  border: 1.5px solid rgba(6, 158, 133, 0.4);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 22px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.stat-number {
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--ima-teal-light);
+  line-height: 1;
+  outline: none;
+}
+
+.stat-label {
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffffff;
+  outline: none;
+  line-height: 1.25;
+}
+
+/* 3. Event Details Block */
 .event-meta-cards {
   display: flex;
   flex-wrap: wrap;
@@ -583,7 +735,7 @@ body.mode-carousel .poster-only {
   font-size: 24px;
 }
 
-/* Points template */
+/* 4. Points & Agenda Block */
 .points-list {
   display: flex;
   flex-direction: column;
@@ -624,7 +776,7 @@ body.mode-carousel .poster-only {
   flex: 1;
 }
 
-/* Quote template */
+/* 5. Quote Block */
 .quote-container {
   position: relative;
   padding: 24px 32px;
@@ -659,7 +811,7 @@ body.mode-carousel .poster-only {
   outline: none;
 }
 
-/* Outro template */
+/* 6. Outro Block */
 .outro-cta-card {
   background: linear-gradient(135deg, rgba(6, 158, 133, 0.35), rgba(0, 51, 106, 0.45));
   border: 2px solid var(--ima-teal-light);
@@ -687,7 +839,7 @@ body.mode-carousel .poster-only {
 
 .outro-sub {
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   outline: none;
 }
 
@@ -702,7 +854,9 @@ body.mode-carousel .poster-only {
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
-/* Slide Footer */
+/* ------------------------------------------------------------
+   Slide Footer (Handle, Website & NGO Tag)
+------------------------------------------------------------ */
 .slide-footer {
   display: flex;
   align-items: center;
@@ -715,14 +869,19 @@ body.mode-carousel .poster-only {
 .slide-footer-brand {
   display: flex;
   align-items: center;
-  gap: 14px;
-  font-size: 21px;
+  gap: 12px;
+  font-size: 20px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
 }
 
-.footer-handle, .footer-url {
+.footer-handle, .footer-url, .footer-ngo-tag {
   outline: none;
+}
+
+.footer-ngo-tag {
+  color: var(--ima-teal-light);
+  font-weight: 700;
 }
 
 .footer-sep {
@@ -752,7 +911,9 @@ body.mode-carousel .poster-only {
   letter-spacing: 0.04em;
 }
 
-/* Inline Editing */
+/* ------------------------------------------------------------
+   Inline Text Editing Affordances
+------------------------------------------------------------ */
 [contenteditable="true"] {
   cursor: text;
   border-radius: 6px;
@@ -777,7 +938,9 @@ body.mode-carousel .poster-only {
   pointer-events: none;
 }
 
-/* Arabic Typography & RTL */
+/* ------------------------------------------------------------
+   Arabic Typography & RTL
+------------------------------------------------------------ */
 body.lang-ar .artboard {
   direction: rtl;
 }
@@ -790,9 +953,16 @@ body.lang-ar .quote-statement,
 body.lang-ar .quote-author,
 body.lang-ar .outro-heading,
 body.lang-ar .outro-sub,
-body.lang-ar .slide-footer-brand {
+body.lang-ar .slide-footer-brand,
+body.lang-ar .ngo-name,
+body.lang-ar .ngo-sub {
   text-align: right;
   font-family: 'Sora', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+body.lang-ar .slide-accent-divider {
+  margin-right: 0;
+  margin-left: auto;
 }
 
 body.lang-ar .quote-container {
@@ -809,7 +979,9 @@ body.lang-ar .slide-header.logo-pos-top-right {
   flex-direction: row;
 }
 
-/* Themes */
+/* ------------------------------------------------------------
+   Themes
+------------------------------------------------------------ */
 .artboard.theme-royal-navy {
   background: linear-gradient(145deg, #00336a 0%, #001a35 100%);
 }
@@ -840,6 +1012,14 @@ body.lang-ar .slide-header.logo-pos-top-right {
   text-shadow: none;
 }
 
+.artboard.theme-clean-white .ngo-name {
+  color: #00336a;
+}
+
+.artboard.theme-clean-white .ngo-sub {
+  color: #069e85;
+}
+
 .artboard.theme-clean-white .slide-badge {
   background: rgba(6, 158, 133, 0.12);
   color: #00336a;
@@ -854,23 +1034,30 @@ body.lang-ar .slide-header.logo-pos-top-right {
   color: #00336a;
 }
 
+.artboard.theme-clean-white .footer-ngo-tag {
+  color: #069e85;
+}
+
 .artboard.theme-clean-white .slide-counter-badge {
   background: rgba(0, 51, 106, 0.08);
   color: #00336a;
   border-color: rgba(0, 51, 106, 0.2);
 }
 
-.artboard.theme-clean-white .point-card {
+.artboard.theme-clean-white .point-card,
+.artboard.theme-clean-white .stat-card {
   background: #ffffff;
   border-color: #cbd5e1;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
-.artboard.theme-clean-white .point-text {
+.artboard.theme-clean-white .point-text,
+.artboard.theme-clean-white .stat-label {
   color: #0f172a;
 }
 
-.artboard.theme-clean-white .meta-chip {
+.artboard.theme-clean-white .meta-chip,
+.artboard.theme-clean-white .mission-chip {
   background: #ffffff;
   border-color: #cbd5e1;
   color: #00336a;
@@ -892,6 +1079,40 @@ body.lang-ar .slide-header.logo-pos-top-right {
 
 .artboard.theme-oceanic-glow {
   background: radial-gradient(circle at 80% 20%, #069e85 0%, #002247 70%, #021220 100%);
+}
+
+/* ------------------------------------------------------------
+   NGO Badge Quick Select Pills
+------------------------------------------------------------ */
+.badge-quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.badge-pill-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ima-border);
+  color: var(--ima-text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.badge-pill-chip:hover {
+  background: rgba(6, 158, 133, 0.15);
+  border-color: var(--ima-teal);
+  color: #ffffff;
+}
+
+.badge-pill-chip.active {
+  background: var(--ima-teal);
+  color: #ffffff;
+  border-color: var(--ima-teal-light);
 }
 
 /* Carousel Strip */
@@ -1044,7 +1265,7 @@ body.lang-ar .slide-header.logo-pos-top-right {
 .tab-pane {
   display: none;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .tab-pane.active {
@@ -1329,7 +1550,7 @@ body.lang-ar .slide-header.logo-pos-top-right {
 }
 
 .logo-choice-btn img {
-  height: 38px;
+  height: 42px;
   object-fit: contain;
 }
 
@@ -1345,7 +1566,7 @@ body.lang-ar .slide-header.logo-pos-top-right {
 
 .no-logo-icon {
   font-size: 1.5rem;
-  line-height: 38px;
+  line-height: 42px;
 }
 
 .btn-segmented {
@@ -1382,7 +1603,7 @@ body.lang-ar .slide-header.logo-pos-top-right {
   padding: 0.9rem;
   font-size: 0.78rem;
   color: var(--ima-text-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .brand-note-card strong {
@@ -1396,6 +1617,62 @@ body.lang-ar .slide-header.logo-pos-top-right {
   background: rgba(0, 0, 0, 0.3);
   padding: 1px 4px;
   border-radius: 4px;
+/* Mobile Drawer Handle & Bar */
+.mobile-drawer-bar {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px 6px;
+  background: var(--ima-surface-card);
+  border-bottom: 1px solid var(--ima-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.drawer-drag-pill {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  margin-bottom: 6px;
+}
+
+.drawer-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.drawer-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.btn-drawer-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--ima-border);
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: var(--transition-fast);
+}
+
+.btn-drawer-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.drawer-backdrop {
+  display: none;
 }
 
 .mobile-bottom-dock {
@@ -1658,50 +1935,152 @@ body.lang-ar .slide-header.logo-pos-top-right {
 /* Mobile */
 @media (max-width: 900px) {
   :root {
-    --header-height: 58px;
+    --header-height: 52px;
   }
 
+  /* Header Optimization */
+  .app-header {
+    height: 52px;
+    padding: 0 0.5rem;
+    gap: 0.35rem;
+    justify-content: space-between;
+  }
+
+  .export-group {
+    display: none !important;
+  }
+
+  .brand-crest {
+    width: 30px;
+    height: 30px;
+  }
+
+  .brand-titles {
+    gap: 0;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  .brand-product {
+    display: none !important;
+  }
+
+  .mode-pill-container {
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .mode-pill {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    gap: 4px;
+  }
+
+  .ratio-toggle {
+    padding: 2px;
+  }
+
+  .ratio-btn {
+    padding: 4px 6px;
+    font-size: 0.7rem;
+  }
+
+  .lang-toggle-btn {
+    padding: 4px 7px;
+    font-size: 0.72rem;
+    gap: 4px;
+  }
+
+  /* Workspace & Stage */
   .main-workspace {
     flex-direction: column;
-    height: calc(100vh - var(--header-height) - 64px);
+    height: calc(100vh - var(--header-height) - 60px);
+    width: 100vw;
+    overflow: hidden;
   }
 
   .stage-container {
-    padding: 0.5rem;
+    padding: 0.35rem 0.5rem 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .canvas-quick-bar {
+    max-width: 100%;
+    margin-bottom: 0.3rem;
+  }
+
+  .canvas-dimension-badge {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
+
+  .quick-helpers .hint-text {
+    font-size: 0.68rem;
+  }
+
+  /* Mobile Drawer Bottom Sheet */
+  .mobile-drawer-bar {
+    display: flex;
   }
 
   .control-panel {
     position: fixed;
-    bottom: 64px;
+    bottom: 60px;
     left: 0;
     right: 0;
     width: 100%;
-    height: 52vh;
+    height: 68vh;
+    max-height: 82vh;
     border-left: none;
-    border-top: 1px solid var(--ima-border);
+    border-top: 1.5px solid var(--ima-teal);
     border-radius: 20px 20px 0 0;
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
-    transform: translateY(110%);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.75);
+    transform: translateY(120%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 95;
+    background: var(--ima-surface);
+    overflow-y: auto;
   }
 
   .control-panel.mobile-open {
     transform: translateY(0);
   }
 
+  .drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 18, 32, 0.68);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.25s ease;
+  }
+
+  .drawer-backdrop.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Mobile Bottom Dock */
   .mobile-bottom-dock {
     display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 64px;
+    height: 60px;
     background: var(--ima-surface);
     border-top: 1px solid var(--ima-border);
-    z-index: 90;
+    z-index: 100;
     justify-content: space-around;
     align-items: center;
-    padding: 0 0.5rem;
+    padding: 0 0.25rem;
   }
 
   .dock-btn {
@@ -1710,15 +2089,20 @@ body.lang-ar .slide-header.logo-pos-top-right {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 2px;
     background: transparent;
     border: none;
     color: var(--ima-text-muted);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 600;
-    padding: 6px 0;
+    padding: 5px 0;
     cursor: pointer;
     transition: var(--transition-fast);
+  }
+
+  .dock-btn svg {
+    width: 18px;
+    height: 18px;
   }
 
   .dock-btn.active {
@@ -1727,14 +2111,44 @@ body.lang-ar .slide-header.logo-pos-top-right {
 
   .dock-btn.highlight {
     color: #ffffff;
-    background: var(--ima-teal);
+    background: linear-gradient(135deg, var(--ima-teal), #00336a);
     border-radius: var(--radius-sm);
     padding: 6px 8px;
-    margin: 4px;
+    margin: 3px;
+    box-shadow: 0 2px 10px rgba(6, 158, 133, 0.4);
+  }
+
+  /* Carousel Strip on Mobile */
+  .carousel-strip-container {
+    padding: 0.4rem 0.6rem;
+    margin-top: 0.25rem;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .carousel-thumb-card {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 0.72rem;
+  }
+
+  .strip-title {
+    font-size: 0.7rem;
+  }
+
+  .strip-actions .btn {
+    padding: 3px 6px;
+    font-size: 0.68rem;
+  }
+
+  .btn-add-slide {
+    padding: 5px 8px;
+    font-size: 0.72rem;
   }
 
   .welcome-modal-card {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     max-height: 90vh;
     overflow-y: auto;
   }
@@ -1744,11 +2158,42 @@ body.lang-ar .slide-header.logo-pos-top-right {
     gap: 1rem;
   }
 
+  .canvas-nav-arrow {
+    width: 36px;
+    height: 36px;
+    background: rgba(15, 23, 42, 0.85);
+    z-index: 20;
+  }
+
   .canvas-nav-arrow.nav-prev {
-    left: 0.25rem;
+    left: 4px;
   }
 
   .canvas-nav-arrow.nav-next {
-    right: 0.25rem;
+    right: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mode-pill span {
+    display: none;
+  }
+
+  .mode-pill {
+    padding: 4px 6px;
+  }
+
+  .ratio-btn {
+    padding: 4px 5px;
+    font-size: 0.68rem;
+  }
+
+  .lang-toggle-btn {
+    padding: 4px 5px;
+    font-size: 0.68rem;
+  }
+
+  .lang-alt {
+    display: none;
   }
 }

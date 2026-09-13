@@ -1,7 +1,7 @@
 /**
- * IMA UK • Poster Maker & Carousel Maker
- * Single & Multi-Slide Social Media Graphics Generator
- * Iraqi Medical Association UK & Europe
+ * IMA UK • Medical NGO Media Studio
+ * Single Poster & Multi-Slide Carousel Generator
+ * Iraqi Medical Association UK & Europe (Registered Medical NGO)
  */
 
 (() => {
@@ -21,55 +21,81 @@
       duplicateSlide: 'Duplicate',
       deleteSlide: 'Delete',
       addNewSlide: 'Add Slide',
-      tabStyle: 'Style',
-      tabLayout: 'Layout',
-      tabBrand: 'Brand',
+      tabStyle: 'Colors & BG',
+      tabLayout: 'Templates',
+      tabBrand: 'NGO Brand',
       bgImageTitle: 'Background Photo',
       optionalBadge: 'Optional',
+      quickSelect: 'Quick Select',
       uploadClickText: 'Upload background image',
       uploadDragText: 'or drag and drop photo here',
       photoActive: 'Background Active',
-      overlayDarkness: 'Darkness / Contrast Tint',
+      overlayDarkness: 'Darkness / Readability Tint',
       brandColorTheme: 'Brand Color Themes',
       slideTemplate: 'Slide Template',
-      tplAnnouncement: 'Announcement',
-      tplAnnouncementDesc: 'Title, subtitle, and category badge',
-      tplEvent: 'Event / Meeting',
-      tplEventDesc: 'Date, venue, & time badges',
-      tplKeyPoints: 'Key Points / Agenda',
+      tplAnnouncement: 'NGO Announcement',
+      tplAnnouncementDesc: 'Title, subtitle, and badge',
+      tplHumanitarian: 'Humanitarian Mission',
+      tplHumanitarianDesc: 'Relief project, region & stats',
+      tplStats: 'Impact & Numbers',
+      tplStatsDesc: '3 bold NGO stat counters',
+      tplEvent: 'Conference / Training',
+      tplEventDesc: 'Date, venue, & CPD badges',
+      tplKeyPoints: 'Objectives / Agenda',
       tplKeyPointsDesc: '3 bulleted highlight cards',
-      tplQuote: 'Quote / Statement',
-      tplQuoteDesc: 'Key quotation and author attribution',
-      tplOutro: 'Call to Action',
-      tplOutroDesc: 'Register, follow, & contact',
+      tplQuote: 'Leadership Message',
+      tplQuoteDesc: 'Statement & author attribution',
+      tplOutro: 'Support & Join NGO',
+      tplOutroDesc: 'Membership, donate & contact',
       elementsVisibility: 'Elements',
       showBadgeToggle: 'Category Tag Badge',
+      showNgoLockupToggle: 'NGO Subtitle next to Logo',
       showFooterToggle: 'Footer & Handles',
-      officialLogo: 'Official Logo',
+      headlineSize: 'Headline Scale',
+      sizeCompact: 'Compact',
+      sizeBalanced: 'Balanced',
+      sizeHero: 'Hero (Big)',
+      officialLogo: 'Official NGO Logo',
+      logoSizeLabel: 'Logo Size',
+      sizeSmall: 'Small',
+      sizeMedium: 'Medium',
+      sizeLarge: 'Large',
       logoPosition: 'Logo Placement',
       posLeft: 'Top Left',
       posCenter: 'Center',
       posRight: 'Top Right',
       swipeHint: 'Swipe ➔',
-      defaultBadge: 'IMA UK ANNOUNCEMENT',
-      defaultTitle: 'Annual Medical Conference 2026',
-      defaultSubtitle: 'Join distinguished healthcare leaders, researchers, and clinicians across the UK & Europe for groundbreaking sessions, networking, and medical innovation.',
+      footerNgoTag: 'UK Registered Medical NGO',
+      ngoBadgesTitle: 'NGO Category Tag',
+      defaultBadge: 'IMA UK • MEDICAL NGO',
+      defaultTitle: 'Annual Medical Conference & Relief Assembly 2026',
+      defaultSubtitle: 'Uniting healthcare professionals, diaspora physicians, and humanitarian partners across the UK & Europe to advance clinical excellence and healthcare relief.',
+      ngoName: 'IRAQI MEDICAL ASSOCIATION',
+      ngoSub: 'UK & Europe • Medical NGO',
       chipDate: '15-16 October 2026',
       chipVenue: 'London, United Kingdom',
-      chipEntry: 'Free for Members',
-      point1: 'Advancing Healthcare Innovations & Research',
-      point2: 'Cross-Border Collaboration Across UK & Europe',
-      point3: 'CME-Accredited Workshops & Keynotes',
-      quoteStatement: '"Empowering Iraqi medical practitioners, bridging expertise, and fostering clinical excellence internationally."',
-      quoteAuthor: 'Executive Committee • IMA UK & Europe',
-      outroTitle: 'Ready to Participate?',
-      outroSubtitle: 'Registrations are now officially open.',
-      outroBtn: 'Register Online ➔',
+      chipEntry: 'CPD Accredited • Free for Members',
+      missionRegion: '📍 Target: Community & Regional Hospitals',
+      missionPatients: '🎯 5,000+ Beneficiaries',
+      missionVolunteers: '🩺 45 Volunteer Specialists',
+      missionCta: 'Support Our Medical NGO Mission ➔',
+      stat1Num: '15,000+',
+      stat1Label: 'Patients Treated & Supported',
+      stat2Num: '380+',
+      stat2Label: 'Volunteer Doctors & Consultants',
+      stat3Num: '45+',
+      stat3Label: 'Medical Missions & CME Sessions',
+      point1: 'Emergency Healthcare Relief & Medical Missions',
+      point2: 'Advancing Clinical Skills & GMC Pathway Guidance',
+      point3: 'Cross-Border Collaboration Between UK & Iraq',
+      quoteStatement: '"Empowering Iraqi medical practitioners, delivering humanitarian healthcare relief, and fostering international clinical excellence."',
+      quoteAuthor: 'Executive Committee • IMA UK (Registered Medical NGO)',
+      outroTitle: 'Join Our Medical Humanitarian Network',
+      outroSubtitle: 'Support our clinical relief missions and participate in upcoming accredited programs.',
+      outroBtn: 'Register & Support ➔',
       footerHandle: '@IMA_UK_Europe',
       footerUrl: 'ima-uk.org',
-      toastCopied: 'Slide updated',
-      toastExporting: 'Preparing high-resolution export...',
-      toastDone: 'Download started successfully!',
+      toastDone: 'High-resolution image downloaded successfully!',
       toastSlideDeleted: 'Slide deleted'
     },
     ar: {
@@ -82,55 +108,81 @@
       duplicateSlide: 'تكرار',
       deleteSlide: 'حذف',
       addNewSlide: 'إضافة شريحة',
-      tabStyle: 'المظهر',
-      tabLayout: 'التخطيط',
-      tabBrand: 'الهوية',
+      tabStyle: 'الألوان والخلفية',
+      tabLayout: 'القوالب',
+      tabBrand: 'هوية المنظمة',
       bgImageTitle: 'صورة الخلفية',
       optionalBadge: 'اختياري',
+      quickSelect: 'اختيار سريع',
       uploadClickText: 'انقر لرفع صورة الخلفية',
       uploadDragText: 'أو اسحب الصورة وأفلتها هنا',
       photoActive: 'صورة الخلفية مفعّلة',
       overlayDarkness: 'تعتيم / تباين الخلفية',
       brandColorTheme: 'ألوان الهوية المعتمدة',
       slideTemplate: 'نمط الشريحة',
-      tplAnnouncement: 'إعلان رئيسي',
-      tplAnnouncementDesc: 'عنوان عريض، نبذة وشارة تصنيف',
-      tplEvent: 'مؤتمر / فعالية',
-      tplEventDesc: 'بطاقات التاريخ، المكان والوقت',
-      tplKeyPoints: 'أهم النقاط / المحاور',
+      tplAnnouncement: 'إعلان المنظمة',
+      tplAnnouncementDesc: 'عنوان رئيسي ونبذة وشارة تصنيف',
+      tplHumanitarian: 'مهمة إنسانية / إغاثة',
+      tplHumanitarianDesc: 'مشروع إغاثي، المنطقة والأرقام',
+      tplStats: 'أثر وأرقام المنظمة',
+      tplStatsDesc: '3 أرقام وإحصائيات بارزة',
+      tplEvent: 'مؤتمر / تدريب مهني',
+      tplEventDesc: 'بطاقات التاريخ، المكان والاعتماد',
+      tplKeyPoints: 'الأهداف والمحاور',
       tplKeyPointsDesc: '3 بطاقات نقطية بارزة',
-      tplQuote: 'اقتباس / تصريح',
+      tplQuote: 'رسالة القيادة / تصريح',
       tplQuoteDesc: 'قول مأثور مع اسم المصدر',
-      tplOutro: 'دعوة للتسجيل / ختام',
-      tplOutroDesc: 'زر تسجيل، متابعة وموقع',
+      tplOutro: 'دعم ومساندة المنظمة',
+      tplOutroDesc: 'الانضمام، التبرع والموقع الرسمي',
       elementsVisibility: 'العناصر',
       showBadgeToggle: 'شارة التصنيف العلوية',
+      showNgoLockupToggle: 'وصف المنظمة بجانب الشعار',
       showFooterToggle: 'الشريط السفلي ومعرّفات التواصل',
-      officialLogo: 'الشعار الرسمي',
+      headlineSize: 'حجم العنوان الرئيسي',
+      sizeCompact: 'موجز',
+      sizeBalanced: 'متوازن',
+      sizeHero: 'عريض (Hero)',
+      officialLogo: 'شعار المنظمة الرسمي',
+      logoSizeLabel: 'حجم الشعار',
+      sizeSmall: 'صغير',
+      sizeMedium: 'متوسط',
+      sizeLarge: 'كبير',
       logoPosition: 'موقع الشعار',
       posLeft: 'أعلى اليمين',
       posCenter: 'الوسط',
       posRight: 'أعلى اليسار',
       swipeHint: 'اسحب ➔',
-      defaultBadge: 'إعلان الجمعية الطبية العراقية',
-      defaultTitle: 'المؤتمر الطبي السنوي لعام 2026',
-      defaultSubtitle: 'ندعو نخبة الأطباء والباحثين في المملكة المتحدة وأوروبا للمشاركة في جلسات علمية مميزة، وورش عمل معتمدة، وتبادل الخبرات الطبية الرائدة.',
+      footerNgoTag: 'منظمة طبية غير حكومية مسجلة',
+      ngoBadgesTitle: 'شارة تصنيف المنظمة',
+      defaultBadge: 'الجمعية الطبية العراقية • منظمة غير حكومية',
+      defaultTitle: 'المؤتمر الطبي السنوي والملتقى الإغاثي 2026',
+      defaultSubtitle: 'توحيد جهود الكفاءات الطبية العراقية في المملكة المتحدة وأوروبا لدعم الرعاية الصحية، ونقل الخبرات التخصصية، ومساندة المبادرات الإنسانية.',
+      ngoName: 'الجمعية الطبية العراقية',
+      ngoSub: 'المملكة المتحدة وأوروبا • منظمة طبية غير حكومية',
       chipDate: '15-16 تشرين الأول 2026',
       chipVenue: 'لندن، المملكة المتحدة',
-      chipEntry: 'التسجيل متاح للأعضاء',
-      point1: 'تطوير الرعاية الصحية والابتكار الطبي المعاصر',
-      point2: 'تعزيز التعاون الطبي المشترك في بريطانيا وأوروبا',
-      point3: 'ورش عمل تدريبية معتمدة للتطوير المهني المستمر',
-      quoteStatement: '«معاً لتمكين الطبيب العراقي، ونقل الخبرات العالمية، والارتقاء بالرعاية الصحية في العراق والمهجر.»',
-      quoteAuthor: 'الهيئة الإدارية • الجمعية الطبية العراقية في المملكة المتحدة',
-      outroTitle: 'انضموا إلينا وسجلوا حضوركم',
-      outroSubtitle: 'المقاعد محدودة لجميع الجلسات التخصصية.',
-      outroBtn: 'سجل الآن عبر الموقع ➔',
+      chipEntry: 'شهادات معتمدة • متاح للأعضاء',
+      missionRegion: '📍 نطاق العمل: المستشفيات والمراكز الإغاثية',
+      missionPatients: '🎯 5,000+ مستفيد من الرعاية الطبية',
+      missionVolunteers: '🩺 45 استشارياً وطبيباً متطوعاً',
+      missionCta: 'شارك في دعم مهمتنا الطبية الإنسانية ➔',
+      stat1Num: '15,000+',
+      stat1Label: 'مريض ومستفيد من خدماتنا',
+      stat2Num: '380+',
+      stat2Label: 'طبيب واستشاري متطوع',
+      stat3Num: '45+',
+      stat3Label: 'مهمة إغاثية وورشة تدريبية',
+      point1: 'قوافل إغاثية طبية وتوفير الرعاية للمرضى',
+      point2: 'برامج تدريب مستمرة ودعم الأطباء الجدد في بريطانيا',
+      point3: 'تعزيز جسور التعاون الطبي الدولي والبحثي',
+      quoteStatement: '«معاً لتمكين الطبيب العراقي، ونقل الخبرات العالمية، ومساندة أهلنا بالرعاية الصحية الإنسانية.»',
+      quoteAuthor: 'الهيئة الإدارية • الجمعية الطبية العراقية (منظمة غير حكومية)',
+      outroTitle: 'انضموا إلى شبكتنا الطبية الإنسانية',
+      outroSubtitle: 'ساهم في دعم مشاريعنا الخيرية والإغاثية وشارك في البرامج العلمية القادمة.',
+      outroBtn: 'سجل لدعم المنظمة ➔',
       footerHandle: '@IMA_UK_Europe',
       footerUrl: 'ima-uk.org',
-      toastCopied: 'تم تحديث الشريحة',
-      toastExporting: 'جارٍ إعداد الصور بدقة فائقة...',
-      toastDone: 'تم بدء التنزيل بنجاح!',
+      toastDone: 'تم تنزيل الصورة بدقة فائقة بنجاح!',
       toastSlideDeleted: 'تم حذف الشريحة'
     }
   };
@@ -145,9 +197,12 @@
     theme: 'theme-royal-navy',
     bgImage: null,
     bgOverlayDarkness: 45, // 0 - 90 %
-    logoSrc: 'assets/logos/ima-crest.png',
+    logoSrc: 'assets/logos/ima-crest-clean.png',
     logoPos: 'logo-pos-top-left',
+    logoSize: 'logo-size-medium', // 'logo-size-small', 'logo-size-medium', 'logo-size-large', 'logo-size-hero'
+    titleDensity: 'font-size-balanced', // 'font-size-compact', 'font-size-balanced', 'font-size-hero'
     showBadge: true,
+    showNgoLockup: true,
     showFooter: true,
     currentSlideIndex: 0,
     slides: [
@@ -162,10 +217,23 @@
       badge: t.defaultBadge,
       title: t.defaultTitle,
       subtitle: t.defaultSubtitle,
+      ngoName: t.ngoName,
+      ngoSub: t.ngoSub,
       chips: [
         { icon: '📅', text: t.chipDate },
         { icon: '📍', text: t.chipVenue },
         { icon: '🎟️', text: t.chipEntry }
+      ],
+      mission: {
+        region: t.missionRegion,
+        patients: t.missionPatients,
+        volunteers: t.missionVolunteers,
+        cta: t.missionCta
+      },
+      stats: [
+        { num: t.stat1Num, label: t.stat1Label },
+        { num: t.stat2Num, label: t.stat2Label },
+        { num: t.stat3Num, label: t.stat3Label }
       ],
       points: [
         t.point1,
@@ -178,7 +246,8 @@
       ctaSub: t.outroSubtitle,
       ctaBtn: t.outroBtn,
       footerHandle: t.footerHandle,
-      footerUrl: t.footerUrl
+      footerUrl: t.footerUrl,
+      footerNgoTag: t.footerNgoTag
     };
   }
 
@@ -189,23 +258,30 @@
     body: document.body,
     stageContainer: document.getElementById('stage-container'),
     canvasWrapper: document.getElementById('canvas-wrapper'),
+    scalerBox: document.getElementById('canvas-scaler-box'),
     artboard: document.getElementById('artboard'),
     artboardBgMedia: document.getElementById('artboard-bg-media'),
     artboardBgOverlay: document.getElementById('artboard-bg-overlay'),
     canvasDimText: document.getElementById('canvas-dim-text'),
+    canvasQuickBar: document.querySelector('.canvas-quick-bar'),
     
     // Canvas Elements
     slideHeader: document.getElementById('slide-header'),
     slideLogoImg: document.getElementById('slide-logo-img'),
     slideLogoWrapper: document.getElementById('slide-logo-wrapper'),
+    slideNgoLockup: document.getElementById('slide-ngo-lockup'),
+    ngoName: document.getElementById('ngo-name'),
+    ngoSub: document.getElementById('ngo-sub'),
     slideBadgeWrapper: document.getElementById('slide-badge-wrapper'),
     slideBadge: document.getElementById('slide-badge'),
+    slideBody: document.getElementById('slide-body'),
     slideTitle: document.getElementById('slide-title'),
     slideSubtitle: document.getElementById('slide-subtitle'),
     slideModularBlock: document.getElementById('slide-modular-block'),
     slideFooter: document.getElementById('slide-footer'),
     footerHandle: document.getElementById('footer-handle'),
     footerUrl: document.getElementById('footer-url'),
+    footerNgoTag: document.getElementById('footer-ngo-tag'),
     slideFooterNav: document.getElementById('slide-footer-nav'),
     slideCounterBadge: document.getElementById('slide-counter-badge'),
     slideSwipeBadge: document.getElementById('slide-swipe-badge'),
@@ -239,6 +315,9 @@
     panelTabs: document.querySelectorAll('.panel-tab'),
     tabPanes: document.querySelectorAll('.tab-pane'),
 
+    // NGO Badges Quick Select
+    badgeQuickPills: document.getElementById('badge-quick-pills'),
+
     // Style Tab Controls
     inputBgUpload: document.getElementById('input-bg-upload'),
     uploadDropzone: document.getElementById('upload-dropzone'),
@@ -253,11 +332,16 @@
     // Layout Tab Controls
     templateBtns: document.querySelectorAll('.template-btn'),
     toggleBadge: document.getElementById('toggle-badge'),
+    toggleNgoLockup: document.getElementById('toggle-ngo-lockup'),
     toggleFooter: document.getElementById('toggle-footer'),
+
+    // Headline Scale Segmented
+    sizeSegmentBtns: document.querySelectorAll('[data-size]'),
 
     // Brand Tab Controls
     logoChoiceBtns: document.querySelectorAll('.logo-choice-btn'),
-    segmentBtns: document.querySelectorAll('.segment-btn'),
+    logoSizeBtns: document.querySelectorAll('[data-logosize]'),
+    posSegmentBtns: document.querySelectorAll('[data-pos]'),
 
     // Welcome Modal
     welcomeModal: document.getElementById('welcome-modal'),
@@ -271,16 +355,17 @@
     exportProgressFill: document.getElementById('export-progress-fill'),
     toast: document.getElementById('toast'),
 
-    // Mobile Dock
+    // Mobile Dock & Drawer
     dockBtns: document.querySelectorAll('.dock-btn'),
-    dockBtnExport: document.getElementById('dock-btn-export')
+    dockBtnExport: document.getElementById('dock-btn-export'),
+    drawerBackdrop: document.getElementById('drawer-backdrop'),
+    btnDrawerClose: document.getElementById('btn-drawer-close')
   };
 
   // ============================================================
   // INITIALIZATION
   // ============================================================
   function init() {
-    // Check URL parameters for direct mode: ?mode=poster or ?mode=carousel
     const urlParams = new URLSearchParams(window.location.search);
     const paramMode = urlParams.get('mode');
     const paramLang = urlParams.get('lang');
@@ -293,7 +378,6 @@
       setMode(paramMode, false);
       DOM.welcomeModal.classList.add('hidden');
     } else {
-      // Show Welcome Modal on initial launch
       DOM.welcomeModal.classList.remove('hidden');
     }
 
@@ -312,29 +396,41 @@
 
   // ============================================================
   // DYNAMIC ARTBOARD SCALING
-  // Fits 1080x1080 or 1080x1350 pixel artboard crisply into viewport
   // ============================================================
   function adjustCanvasScale() {
-    if (!DOM.canvasWrapper || !DOM.artboard) return;
-
-    const wrapperRect = DOM.canvasWrapper.getBoundingClientRect();
-    const availableWidth = wrapperRect.width - 24;
-    const availableHeight = wrapperRect.height - 24;
+    if (!DOM.stageContainer || !DOM.artboard) return;
 
     const baseWidth = 1080;
     const baseHeight = state.ratio === 'square' ? 1080 : 1350;
+
+    const isMobile = window.innerWidth <= 900;
+    const padX = isMobile ? 24 : 64;
+    const availableWidth = Math.max(180, DOM.stageContainer.clientWidth - padX);
+
+    const quickBarH = DOM.canvasQuickBar ? DOM.canvasQuickBar.offsetHeight : 30;
+    const stripH = (state.mode === 'carousel' && DOM.carouselStripContainer && DOM.carouselStripContainer.offsetHeight > 0)
+      ? DOM.carouselStripContainer.offsetHeight
+      : (state.mode === 'carousel' ? (isMobile ? 100 : 130) : 0);
+    const padY = isMobile ? 20 : 48;
+    const availableHeight = Math.max(180, DOM.stageContainer.clientHeight - quickBarH - stripH - padY);
 
     const scaleX = availableWidth / baseWidth;
     const scaleY = availableHeight / baseHeight;
     const scale = Math.min(scaleX, scaleY, 0.95);
 
+    const scaledW = Math.round(baseWidth * scale);
+    const scaledH = Math.round(baseHeight * scale);
+
+    if (DOM.scalerBox) {
+      DOM.scalerBox.style.width = `${scaledW}px`;
+      DOM.scalerBox.style.height = `${scaledH}px`;
+    }
     DOM.artboard.style.transform = `scale(${scale})`;
+    DOM.artboard.style.transformOrigin = '0 0';
 
-    // Adjust wrapper height so scrollbars & footer strip align seamlessly
-    DOM.canvasWrapper.style.height = `${baseHeight * scale + 10}px`;
-
-    // Update dimension display pill
-    DOM.canvasDimText.textContent = `${baseWidth} × ${baseHeight} px (${Math.round(scale * 100)}%)`;
+    if (DOM.canvasDimText) {
+      DOM.canvasDimText.textContent = `${baseWidth} × ${baseHeight} px (${Math.round(scale * 100)}%)`;
+    }
   }
 
   // ============================================================
@@ -348,14 +444,22 @@
     DOM.slideBadge.innerText = slide.badge || '';
     DOM.slideTitle.innerText = slide.title || '';
     DOM.slideSubtitle.innerText = slide.subtitle || '';
+    DOM.ngoName.innerText = slide.ngoName || I18N[state.lang].ngoName;
+    DOM.ngoSub.innerText = slide.ngoSub || I18N[state.lang].ngoSub;
     DOM.footerHandle.innerText = slide.footerHandle || '@IMA_UK_Europe';
     DOM.footerUrl.innerText = slide.footerUrl || 'ima-uk.org';
+    DOM.footerNgoTag.innerText = slide.footerNgoTag || I18N[state.lang].footerNgoTag;
 
-    // Badge & Footer Visibility
+    // Visibility toggles
     DOM.slideBadgeWrapper.style.display = state.showBadge ? 'flex' : 'none';
+    DOM.slideNgoLockup.style.display = state.showNgoLockup ? 'flex' : 'none';
     DOM.slideFooter.style.display = state.showFooter ? 'flex' : 'none';
     DOM.toggleBadge.checked = state.showBadge;
+    DOM.toggleNgoLockup.checked = state.showNgoLockup;
     DOM.toggleFooter.checked = state.showFooter;
+
+    // Headline font size class
+    DOM.slideTitle.className = `slide-title ${state.titleDensity}`;
 
     // Slide Counter & Swipe Hint
     const totalSlides = state.slides.length;
@@ -363,7 +467,6 @@
     const totalNum = String(totalSlides).padStart(2, '0');
     DOM.slideCounterBadge.textContent = `${currentNum} / ${totalNum}`;
 
-    // Hide swipe badge on the last slide
     if (state.currentSlideIndex === totalSlides - 1) {
       DOM.slideSwipeBadge.style.visibility = 'hidden';
     } else {
@@ -371,14 +474,12 @@
       DOM.slideSwipeBadge.textContent = I18N[state.lang].swipeHint;
     }
 
-    // Prev / Next button state
     DOM.btnPrevSlide.disabled = state.currentSlideIndex === 0;
     DOM.btnNextSlide.disabled = state.currentSlideIndex === totalSlides - 1;
 
-    // Render Modular Template Block
     renderModularTemplate(slide);
 
-    // Sync template selector button in layout tab
+    // Sync template selector buttons
     DOM.templateBtns.forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-template') === slide.template);
     });
@@ -395,11 +496,77 @@
     block.className = `slide-modular-block ${slide.template}`;
 
     if (slide.template === 'layout-announcement') {
-      // Pure clean announcement: no extra modular box
       return;
     }
 
-    if (slide.template === 'layout-event') {
+    if (slide.template === 'layout-humanitarian') {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'humanitarian-block';
+
+      const strip = document.createElement('div');
+      strip.className = 'mission-meta-strip';
+
+      const chip1 = document.createElement('div');
+      chip1.className = 'mission-chip';
+      chip1.setAttribute('contenteditable', 'true');
+      chip1.innerText = slide.mission?.region || I18N[state.lang].missionRegion;
+      chip1.addEventListener('input', () => { if (!slide.mission) slide.mission = {}; slide.mission.region = chip1.innerText; });
+
+      const chip2 = document.createElement('div');
+      chip2.className = 'mission-chip';
+      chip2.setAttribute('contenteditable', 'true');
+      chip2.innerText = slide.mission?.patients || I18N[state.lang].missionPatients;
+      chip2.addEventListener('input', () => { if (!slide.mission) slide.mission = {}; slide.mission.patients = chip2.innerText; });
+
+      const chip3 = document.createElement('div');
+      chip3.className = 'mission-chip';
+      chip3.setAttribute('contenteditable', 'true');
+      chip3.innerText = slide.mission?.volunteers || I18N[state.lang].missionVolunteers;
+      chip3.addEventListener('input', () => { if (!slide.mission) slide.mission = {}; slide.mission.volunteers = chip3.innerText; });
+
+      strip.appendChild(chip1);
+      strip.appendChild(chip2);
+      strip.appendChild(chip3);
+
+      const cta = document.createElement('div');
+      cta.className = 'mission-support-btn';
+      cta.setAttribute('contenteditable', 'true');
+      cta.innerText = slide.mission?.cta || I18N[state.lang].missionCta;
+      cta.addEventListener('input', () => { if (!slide.mission) slide.mission = {}; slide.mission.cta = cta.innerText; });
+
+      wrapper.appendChild(strip);
+      wrapper.appendChild(cta);
+      block.appendChild(wrapper);
+
+    } else if (slide.template === 'layout-stats') {
+      const grid = document.createElement('div');
+      grid.className = 'stats-grid';
+
+      const stats = slide.stats || [
+        { num: I18N[state.lang].stat1Num, label: I18N[state.lang].stat1Label },
+        { num: I18N[state.lang].stat2Num, label: I18N[state.lang].stat2Label },
+        { num: I18N[state.lang].stat3Num, label: I18N[state.lang].stat3Label }
+      ];
+
+      stats.forEach((st, idx) => {
+        const card = document.createElement('div');
+        card.className = 'stat-card';
+        card.innerHTML = `
+          <div class="stat-number" contenteditable="true" spellcheck="false">${st.num}</div>
+          <div class="stat-label" contenteditable="true" spellcheck="false">${st.label}</div>
+        `;
+        const numEl = card.querySelector('.stat-number');
+        const labelEl = card.querySelector('.stat-label');
+
+        numEl.addEventListener('input', () => { st.num = numEl.innerText; });
+        labelEl.addEventListener('input', () => { st.label = labelEl.innerText; });
+
+        grid.appendChild(card);
+      });
+
+      block.appendChild(grid);
+
+    } else if (slide.template === 'layout-event') {
       const cards = document.createElement('div');
       cards.className = 'event-meta-cards';
 
@@ -416,6 +583,7 @@
       });
 
       block.appendChild(cards);
+
     } else if (slide.template === 'layout-checklist') {
       const list = document.createElement('div');
       list.className = 'points-list';
@@ -435,6 +603,7 @@
       });
 
       block.appendChild(list);
+
     } else if (slide.template === 'layout-quote') {
       const quoteBox = document.createElement('div');
       quoteBox.className = 'quote-container';
@@ -451,6 +620,7 @@
       authEl.addEventListener('input', () => { slide.author = authEl.innerText; });
 
       block.appendChild(quoteBox);
+
     } else if (slide.template === 'layout-outro') {
       const outroBox = document.createElement('div');
       outroBox.className = 'outro-cta-card';
@@ -493,7 +663,6 @@
       DOM.carouselThumbnailsList.appendChild(thumb);
     });
 
-    // Disable delete if only 1 slide remains
     DOM.btnDeleteSlide.disabled = state.slides.length <= 1;
   }
 
@@ -501,12 +670,10 @@
   // STYLING & BRAND UPDATES
   // ============================================================
   function updateTheme() {
-    // Remove old theme classes
     const themeClasses = ['theme-royal-navy', 'theme-signature-dual', 'theme-clinical-teal', 'theme-midnight-dark', 'theme-clean-white', 'theme-oceanic-glow'];
     DOM.artboard.classList.remove(...themeClasses);
     DOM.artboard.classList.add(state.theme);
 
-    // Sync theme chip selection
     DOM.themeChips.forEach(chip => {
       chip.classList.toggle('active', chip.getAttribute('data-theme') === state.theme);
     });
@@ -524,12 +691,21 @@
     DOM.slideHeader.classList.remove('logo-pos-top-left', 'logo-pos-top-center', 'logo-pos-top-right');
     DOM.slideHeader.classList.add(state.logoPos);
 
-    // Sync buttons
+    // Logo size classes on artboard
+    const sizeClasses = ['logo-size-small', 'logo-size-medium', 'logo-size-large', 'logo-size-hero'];
+    DOM.artboard.classList.remove(...sizeClasses);
+    DOM.artboard.classList.add(state.logoSize);
+
+    // Sync UI buttons
     DOM.logoChoiceBtns.forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-logo') === state.logoSrc);
     });
 
-    DOM.segmentBtns.forEach(btn => {
+    DOM.logoSizeBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-logosize') === state.logoSize);
+    });
+
+    DOM.posSegmentBtns.forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-pos') === state.logoPos);
     });
   }
@@ -562,7 +738,6 @@
     document.documentElement.setAttribute('lang', state.lang);
     document.documentElement.setAttribute('dir', state.lang === 'ar' ? 'rtl' : 'ltr');
 
-    // Toggle indicator texts
     if (state.lang === 'en') {
       DOM.langCurrent.textContent = 'EN';
       DOM.langTarget.textContent = 'عربي';
@@ -571,7 +746,6 @@
       DOM.langTarget.textContent = 'EN';
     }
 
-    // Update all i18n data elements in DOM
     const t = I18N[state.lang];
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -580,13 +754,32 @@
       }
     });
 
+    // Update NGO badge quick select pills labels
+    if (DOM.badgeQuickPills) {
+      const pills = DOM.badgeQuickPills.querySelectorAll('.badge-pill-chip');
+      if (state.lang === 'ar') {
+        if (pills[0]) { pills[0].textContent = '🏥 منظمة غير حكومية'; pills[0].dataset.badge = 'الجمعية الطبية العراقية • منظمة غير حكومية'; }
+        if (pills[1]) { pills[1].textContent = '🌍 إغاثة طبية إنسانية'; pills[1].dataset.badge = 'إغاثة طبية إنسانية'; }
+        if (pills[2]) { pills[2].textContent = '📢 إعلان المنظمة الطبية'; pills[2].dataset.badge = 'إعلان الجمعية الطبية العراقية'; }
+        if (pills[3]) { pills[3].textContent = '🩺 صحة المجتمع'; pills[3].dataset.badge = 'صحة المجتمع والرعاية الطبية'; }
+        if (pills[4]) { pills[4].textContent = '🎓 تدريب وتطوير مهني'; pills[4].dataset.badge = 'تدريب وتطوير مهني طبي'; }
+        if (pills[5]) { pills[5].textContent = '🤝 مبادرة خيرية'; pills[5].dataset.badge = 'مبادرة خيرية إنسانية'; }
+      } else {
+        if (pills[0]) { pills[0].textContent = '🏥 Medical NGO'; pills[0].dataset.badge = 'IMA UK • MEDICAL NGO'; }
+        if (pills[1]) { pills[1].textContent = '🌍 Humanitarian Relief'; pills[1].dataset.badge = 'HUMANITARIAN RELIEF'; }
+        if (pills[2]) { pills[2].textContent = '📢 NGO Announcement'; pills[2].dataset.badge = 'NGO ANNOUNCEMENT'; }
+        if (pills[3]) { pills[3].textContent = '🩺 Community Health'; pills[3].dataset.badge = 'COMMUNITY HEALTHCARE'; }
+        if (pills[4]) { pills[4].textContent = '🎓 Medical Training'; pills[4].dataset.badge = 'MEDICAL TRAINING & CPD'; }
+        if (pills[5]) { pills[5].textContent = '🤝 Charity Initiative'; pills[5].dataset.badge = 'CHARITY INITIATIVE'; }
+      }
+    }
+
     renderCurrentSlide();
   }
 
   function toggleLanguage() {
     state.lang = state.lang === 'en' ? 'ar' : 'en';
 
-    // Ask or seamlessly populate authentic localized placeholders if current content is default
     const currentSlide = state.slides[state.currentSlideIndex];
     const prevLang = state.lang === 'en' ? 'ar' : 'en';
     const oldDefaults = I18N[prevLang];
@@ -595,6 +788,9 @@
       currentSlide.title = I18N[state.lang].defaultTitle;
       currentSlide.subtitle = I18N[state.lang].defaultSubtitle;
       currentSlide.badge = I18N[state.lang].defaultBadge;
+      currentSlide.ngoName = I18N[state.lang].ngoName;
+      currentSlide.ngoSub = I18N[state.lang].ngoSub;
+      currentSlide.footerNgoTag = I18N[state.lang].footerNgoTag;
     }
 
     applyLanguage();
@@ -612,36 +808,70 @@
     DOM.pillPoster.classList.toggle('active', mode === 'poster');
     DOM.pillCarousel.classList.toggle('active', mode === 'carousel');
 
-    DOM.productTitleBadge.textContent = mode === 'poster' ? 'Poster' : 'Carousel';
+    DOM.productTitleBadge.textContent = mode === 'poster' ? 'NGO Poster' : 'NGO Carousel';
 
     if (mode === 'carousel' && state.slides.length === 1) {
-      // Prepopulate standard 3-slide carousel flow for instant satisfaction
+      // Prepopulate standard multi-slide NGO campaign flow
       state.slides.push(
         {
-          template: 'layout-checklist',
-          badge: state.lang === 'en' ? 'KEY HIGHLIGHTS' : 'أهم المحاور',
-          title: state.lang === 'en' ? 'Core Objectives & Topics' : 'أهداف ومحاور المؤتمر',
-          subtitle: state.lang === 'en' ? 'Comprehensive medical curriculum across key health sectors.' : 'برنامج طبي متكامل يغطي كافة المجالات الحيوية.',
+          template: 'layout-humanitarian',
+          badge: state.lang === 'en' ? 'HUMANITARIAN MISSION' : 'مهمة إنسانية وإغاثة',
+          title: state.lang === 'en' ? 'Pediatric Care & Surgical Relief 2026' : 'حملة طب الأطفال والجراحة الإغاثية 2026',
+          subtitle: state.lang === 'en' ? 'Deploying multidisciplinary consultant teams to support regional clinics and underserved healthcare facilities.' : 'إيفاد فرق طبية استشارية متعددة التخصصات لدعم المستشفيات والمراكز الأكثر احتياجاً.',
+          ngoName: I18N[state.lang].ngoName,
+          ngoSub: I18N[state.lang].ngoSub,
           chips: [],
-          points: [
-            I18N[state.lang].point1,
-            I18N[state.lang].point2,
-            I18N[state.lang].point3
-          ],
+          mission: {
+            region: I18N[state.lang].missionRegion,
+            patients: I18N[state.lang].missionPatients,
+            volunteers: I18N[state.lang].missionVolunteers,
+            cta: I18N[state.lang].missionCta
+          },
+          stats: [],
+          points: [],
           quote: '',
           author: '',
           ctaHeading: '',
           ctaSub: '',
           ctaBtn: '',
           footerHandle: I18N[state.lang].footerHandle,
-          footerUrl: I18N[state.lang].footerUrl
+          footerUrl: I18N[state.lang].footerUrl,
+          footerNgoTag: I18N[state.lang].footerNgoTag
+        },
+        {
+          template: 'layout-stats',
+          badge: state.lang === 'en' ? 'NGO IMPACT & REACH' : 'أثر وأرقام المنظمة',
+          title: state.lang === 'en' ? 'Our Tangible Medical Contribution' : 'أثرنا الطبي والإنساني الملموس',
+          subtitle: state.lang === 'en' ? 'Over two decades of healthcare volunteerism, clinical education, and medical partnership.' : 'أكثر من عقدين من العمل التطوعي الطبي، والتعليم السريري المستمر، والشراكات الإنسانية.',
+          ngoName: I18N[state.lang].ngoName,
+          ngoSub: I18N[state.lang].ngoSub,
+          chips: [],
+          mission: null,
+          stats: [
+            { num: I18N[state.lang].stat1Num, label: I18N[state.lang].stat1Label },
+            { num: I18N[state.lang].stat2Num, label: I18N[state.lang].stat2Label },
+            { num: I18N[state.lang].stat3Num, label: I18N[state.lang].stat3Label }
+          ],
+          points: [],
+          quote: '',
+          author: '',
+          ctaHeading: '',
+          ctaSub: '',
+          ctaBtn: '',
+          footerHandle: I18N[state.lang].footerHandle,
+          footerUrl: I18N[state.lang].footerUrl,
+          footerNgoTag: I18N[state.lang].footerNgoTag
         },
         {
           template: 'layout-outro',
-          badge: state.lang === 'en' ? 'REGISTER NOW' : 'التسجيل متاح',
-          title: state.lang === 'en' ? 'Join Us in London & Online' : 'انضموا إلينا في لندن وعبر الإنترنت',
-          subtitle: state.lang === 'en' ? 'Secure your attendance today to connect with healthcare pioneers.' : 'احجز مقعدك اليوم للتواصل مع رواد القطاع الصحي.',
+          badge: state.lang === 'en' ? 'SUPPORT OUR NGO' : 'شارك معنا في الدعم',
+          title: state.lang === 'en' ? 'Join As Volunteer Doctor Or Partner' : 'انضم كطبيب متطوع أو شريك إنساني',
+          subtitle: state.lang === 'en' ? 'Together, we empower healthcare professionals and deliver urgent medical hope.' : 'معاً نُمكّن الكفاءات الطبية ونقدم الأمل والرعاية لمن هم بأمس الحاجة.',
+          ngoName: I18N[state.lang].ngoName,
+          ngoSub: I18N[state.lang].ngoSub,
           chips: [],
+          mission: null,
+          stats: [],
           points: [],
           quote: '',
           author: '',
@@ -649,7 +879,8 @@
           ctaSub: I18N[state.lang].outroSubtitle,
           ctaBtn: I18N[state.lang].outroBtn,
           footerHandle: I18N[state.lang].footerHandle,
-          footerUrl: I18N[state.lang].footerUrl
+          footerUrl: I18N[state.lang].footerUrl,
+          footerNgoTag: I18N[state.lang].footerNgoTag
         }
       );
     }
@@ -667,8 +898,7 @@
   // SLIDE MANAGEMENT (CAROUSEL)
   // ============================================================
   function addSlide() {
-    const templates = ['layout-announcement', 'layout-event', 'layout-checklist', 'layout-quote', 'layout-outro'];
-    // Cycle template based on slide length
+    const templates = ['layout-announcement', 'layout-humanitarian', 'layout-stats', 'layout-event', 'layout-checklist', 'layout-quote', 'layout-outro'];
     const tpl = templates[state.slides.length % templates.length];
     const newSlide = createDefaultSlide(tpl, state.lang);
 
@@ -724,41 +954,90 @@
   }
 
   // ============================================================
-  // EXPORT ENGINE (HIGH-RESOLUTION PNG & ZIP)
+  // ULTRA-CRISP EXPORT ENGINE (FIXED & IMPROVED)
+  // Completely isolates artboard offscreen with zero shadows, zero margins
+  // and captures at full 2x Retina resolution (2160x2160 or 2160x2700)
   // ============================================================
   async function renderSlideToCanvas() {
-    // Wait for fonts to be ready
     if (document.fonts && document.fonts.ready) {
       await document.fonts.ready;
     }
 
-    // Save current scale
-    const originalTransform = DOM.artboard.style.transform;
-    DOM.artboard.style.transform = 'scale(1)';
+    const width = 1080;
+    const height = state.ratio === 'square' ? 1080 : 1350;
 
-    const canvas = await html2canvas(DOM.artboard, {
-      scale: 1, // Full 1080x1080 or 1080x1350 resolution
+    // 1. Create a dedicated offscreen staging wrapper
+    const staging = document.createElement('div');
+    staging.style.position = 'fixed';
+    staging.style.left = '0';
+    staging.style.top = '0';
+    staging.style.width = `${width}px`;
+    staging.style.height = `${height}px`;
+    staging.style.zIndex = '-999999';
+    staging.style.overflow = 'hidden';
+    staging.style.pointerEvents = 'none';
+
+    // 2. Clone the live artboard into staging
+    const clone = DOM.artboard.cloneNode(true);
+    clone.style.transform = 'none';
+    clone.style.transformOrigin = '0 0';
+    clone.style.boxShadow = 'none';
+    clone.style.borderRadius = '0';
+    clone.style.margin = '0';
+    clone.style.width = `${width}px`;
+    clone.style.height = `${height}px`;
+    clone.style.left = '0';
+    clone.style.top = '0';
+    clone.style.position = 'absolute';
+
+    // Remove any live edit outlines or focus rings
+    clone.querySelectorAll('[contenteditable]').forEach(el => {
+      el.removeAttribute('contenteditable');
+      el.style.outline = 'none';
+      el.style.boxShadow = 'none';
+      el.style.backgroundColor = 'transparent';
+    });
+
+    // Remove any decor glow that could cause bounding rectangle cutoff
+    const glow = clone.querySelector('.artboard-decor-glow');
+    if (glow) glow.remove();
+
+    staging.appendChild(clone);
+    document.body.appendChild(staging);
+
+    // Allow browser to render layout
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
+    // 3. Render via html2canvas with exact 1080 bounds and 2x resolution
+    const canvas = await html2canvas(clone, {
+      width: width,
+      height: height,
+      scale: 2, // 2x gives pristine 2160x2160 Retina output
       useCORS: true,
       allowTaint: true,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: width,
+      windowHeight: height,
       backgroundColor: null,
       logging: false
     });
 
-    // Restore responsive transform
-    DOM.artboard.style.transform = originalTransform;
+    // 4. Clean up staging element
+    document.body.removeChild(staging);
     return canvas;
   }
 
   // Single Slide Export
   async function exportSinglePNG() {
     try {
-      showExportOverlay('Rendering High-Resolution Poster...', 'Generating crisp 1080px brand graphic', 40);
+      showExportOverlay('Rendering High-Resolution Poster...', 'Generating crisp 2160px edge-to-edge graphic', 40);
 
       const canvas = await renderSlideToCanvas();
       setExportProgress(85);
 
       const dataUrl = canvas.toDataURL('image/png');
-      const filename = `IMA-UK-${state.mode === 'poster' ? 'Poster' : 'Slide-' + (state.currentSlideIndex + 1)}.png`;
+      const filename = `IMA-UK-NGO-${state.mode === 'poster' ? 'Poster' : 'Slide-' + (state.currentSlideIndex + 1)}.png`;
 
       downloadDataUrl(dataUrl, filename);
       setExportProgress(100);
@@ -782,17 +1061,16 @@
     }
 
     try {
-      showExportOverlay('Rendering All Carousel Slides...', 'Building multi-slide ZIP archive', 10);
+      showExportOverlay('Rendering All Carousel Slides...', 'Building multi-slide ZIP archive at 2160px', 10);
 
       const zip = new JSZip();
-      const folder = zip.folder('IMA_UK_Carousel');
+      const folder = zip.folder('IMA_UK_NGO_Carousel');
       const savedActiveIndex = state.currentSlideIndex;
       const total = state.slides.length;
 
       for (let i = 0; i < total; i++) {
         state.currentSlideIndex = i;
         renderCurrentSlide();
-        // Give DOM time to update
         await new Promise(r => setTimeout(r, 60));
 
         const canvas = await renderSlideToCanvas();
@@ -804,7 +1082,6 @@
         setExportProgress(pct);
       }
 
-      // Restore original active slide
       state.currentSlideIndex = savedActiveIndex;
       renderCurrentSlide();
 
@@ -814,7 +1091,7 @@
 
       const link = document.createElement('a');
       link.href = downloadUrl;
-      link.download = 'IMA_UK_Carousel_Post.zip';
+      link.download = 'IMA_UK_Medical_NGO_Carousel.zip';
       link.click();
       URL.revokeObjectURL(downloadUrl);
 
@@ -946,12 +1223,51 @@
       state.slides[state.currentSlideIndex].subtitle = DOM.slideSubtitle.innerText;
     });
 
+    DOM.ngoName.addEventListener('input', () => {
+      state.slides[state.currentSlideIndex].ngoName = DOM.ngoName.innerText;
+    });
+
+    DOM.ngoSub.addEventListener('input', () => {
+      state.slides[state.currentSlideIndex].ngoSub = DOM.ngoSub.innerText;
+    });
+
     DOM.footerHandle.addEventListener('input', () => {
       state.slides[state.currentSlideIndex].footerHandle = DOM.footerHandle.innerText;
     });
 
     DOM.footerUrl.addEventListener('input', () => {
       state.slides[state.currentSlideIndex].footerUrl = DOM.footerUrl.innerText;
+    });
+
+    DOM.footerNgoTag.addEventListener('input', () => {
+      state.slides[state.currentSlideIndex].footerNgoTag = DOM.footerNgoTag.innerText;
+    });
+
+    // NGO Category Badge Quick Presets
+    if (DOM.badgeQuickPills) {
+      DOM.badgeQuickPills.addEventListener('click', (e) => {
+        const btn = e.target.closest('.badge-pill-chip');
+        if (!btn) return;
+
+        const badgeText = btn.getAttribute('data-badge') || btn.innerText;
+        state.slides[state.currentSlideIndex].badge = badgeText;
+        DOM.slideBadge.innerText = badgeText;
+
+        DOM.badgeQuickPills.querySelectorAll('.badge-pill-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        showToast('Badge updated');
+      });
+    }
+
+    // Headline Size / Density Buttons
+    DOM.sizeSegmentBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sizeClass = btn.getAttribute('data-size');
+        state.titleDensity = sizeClass;
+        DOM.sizeSegmentBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        DOM.slideTitle.className = `slide-title ${state.titleDensity}`;
+      });
     });
 
     // Background Image Upload & Drag/Drop
@@ -1014,6 +1330,11 @@
       DOM.slideBadgeWrapper.style.display = state.showBadge ? 'flex' : 'none';
     });
 
+    DOM.toggleNgoLockup.addEventListener('change', (e) => {
+      state.showNgoLockup = e.target.checked;
+      DOM.slideNgoLockup.style.display = state.showNgoLockup ? 'flex' : 'none';
+    });
+
     DOM.toggleFooter.addEventListener('change', (e) => {
       state.showFooter = e.target.checked;
       DOM.slideFooter.style.display = state.showFooter ? 'flex' : 'none';
@@ -1027,8 +1348,16 @@
       });
     });
 
+    // Logo Size Variants
+    DOM.logoSizeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.logoSize = btn.getAttribute('data-logosize');
+        updateLogo();
+      });
+    });
+
     // Logo Positions
-    DOM.segmentBtns.forEach(btn => {
+    DOM.posSegmentBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         state.logoPos = btn.getAttribute('data-pos');
         updateLogo();
@@ -1045,8 +1374,21 @@
         tab.classList.add('active');
         const pane = document.getElementById(`pane-${targetTab}`);
         if (pane) pane.classList.add('active');
+
+        // Sync dock tab state
+        DOM.dockBtns.forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-mobile-tab') === targetTab);
+        });
       });
     });
+
+    // Close Mobile Drawer Triggers
+    if (DOM.btnDrawerClose) {
+      DOM.btnDrawerClose.addEventListener('click', closeMobileDrawer);
+    }
+    if (DOM.drawerBackdrop) {
+      DOM.drawerBackdrop.addEventListener('click', closeMobileDrawer);
+    }
 
     // Mobile Bottom Dock Buttons
     DOM.dockBtns.forEach(btn => {
@@ -1054,22 +1396,36 @@
         const targetTab = btn.getAttribute('data-mobile-tab');
         if (!targetTab) return;
 
-        DOM.dockBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
         if (targetTab === 'stage') {
-          DOM.controlPanel.classList.remove('mobile-open');
+          closeMobileDrawer();
         } else {
-          DOM.controlPanel.classList.add('mobile-open');
-          // Activate corresponding desktop tab
-          DOM.panelTabs.forEach(t => {
-            t.classList.toggle('active', t.getAttribute('data-tab') === targetTab);
-          });
-          DOM.tabPanes.forEach(p => {
-            p.classList.toggle('active', p.id === `pane-${targetTab}`);
-          });
+          openMobileDrawer(targetTab);
         }
       });
+    });
+  }
+
+  function openMobileDrawer(targetTab) {
+    DOM.controlPanel.classList.add('mobile-open');
+    if (DOM.drawerBackdrop) DOM.drawerBackdrop.classList.remove('hidden');
+    if (targetTab) {
+      DOM.panelTabs.forEach(t => {
+        t.classList.toggle('active', t.getAttribute('data-tab') === targetTab);
+      });
+      DOM.tabPanes.forEach(p => {
+        p.classList.toggle('active', p.id === `pane-${targetTab}`);
+      });
+      DOM.dockBtns.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-mobile-tab') === targetTab);
+      });
+    }
+  }
+
+  function closeMobileDrawer() {
+    DOM.controlPanel.classList.remove('mobile-open');
+    if (DOM.drawerBackdrop) DOM.drawerBackdrop.classList.add('hidden');
+    DOM.dockBtns.forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-mobile-tab') === 'stage');
     });
   }
 
@@ -1089,7 +1445,6 @@
     reader.readAsDataURL(file);
   }
 
-  // Debounce utility for smooth resize
   function debounce(fn, wait) {
     let timer;
     return (...args) => {
@@ -1098,7 +1453,6 @@
     };
   }
 
-  // Start app on DOM load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>IMA UK • Poster & Carousel Maker</title>
-  <meta name="description" content="Super simple, mobile-first social poster and carousel generator for Iraqi Medical Association UK & Europe.">
+  <title>IMA UK • Medical NGO Media Studio</title>
+  <meta name="description" content="Official social poster & carousel maker for Iraqi Medical Association UK & Europe (Registered Medical NGO).">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/logos/ima-crest.png">
+  <link rel="icon" type="image/png" href="assets/logos/ima-crest-clean.png">
 
   <!-- Google Fonts: Sora (EN/Latin) & IBM Plex Sans Arabic (Geometric Arabic matching Sora) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +29,10 @@
   <header class="app-header">
     <div class="header-left">
       <div class="brand-badge" id="btn-home" title="Switch Mode / New Project">
-        <img src="assets/logos/ima-crest.png" alt="IMA UK Crest" class="brand-crest">
+        <img src="assets/logos/ima-crest-clean.png" alt="IMA UK Crest" class="brand-crest">
         <div class="brand-titles">
           <span class="brand-name">IMA UK</span>
-          <span class="brand-product" id="product-title-badge">Studio</span>
+          <span class="brand-product" id="product-title-badge">Medical NGO Studio</span>
         </div>
       </div>
     </div>
@@ -97,17 +97,15 @@
       <!-- Scaled Wrapper (keeps aspect ratio & fits viewport) -->
       <div class="canvas-viewport-wrapper" id="canvas-wrapper">
         
-        <!-- ============================================================
-             THE 1080px VIRTUAL ARTBOARD (Rendered by html2canvas)
-        ============================================================ -->
-        <div class="artboard ratio-square theme-royal-navy" id="artboard" data-ratio="square">
+        <div class="canvas-scaler-box" id="canvas-scaler-box">
+          <!-- ============================================================
+               THE 1080px VIRTUAL ARTBOARD (Rendered by html2canvas)
+          ============================================================ -->
+          <div class="artboard ratio-square theme-royal-navy logo-size-medium" id="artboard" data-ratio="square">
           
           <!-- Layer 1: Background Media & Overlay -->
           <div class="artboard-bg-media" id="artboard-bg-media"></div>
           <div class="artboard-bg-overlay" id="artboard-bg-overlay"></div>
-
-          <!-- Decorative Brand Light/Graphic Glow -->
-          <div class="artboard-decor-glow"></div>
 
           <!-- Layer 2: Slide Content Foreground -->
           <div class="artboard-content" id="artboard-content">
@@ -115,16 +113,21 @@
             <!-- Slide Header: Logo & Tag Badge -->
             <header class="slide-header logo-pos-top-left" id="slide-header">
               <div class="slide-logo-wrapper" id="slide-logo-wrapper">
-                <img src="assets/logos/ima-crest.png" alt="IMA UK" class="slide-logo-img" id="slide-logo-img">
+                <img src="assets/logos/ima-crest-clean.png" alt="IMA UK" class="slide-logo-img" id="slide-logo-img">
+                <div class="slide-ngo-lockup" id="slide-ngo-lockup">
+                  <span class="ngo-name" contenteditable="true" spellcheck="false" id="ngo-name">IRAQI MEDICAL ASSOCIATION</span>
+                  <span class="ngo-sub" contenteditable="true" spellcheck="false" id="ngo-sub">UK & Europe • Medical NGO</span>
+                </div>
               </div>
               <div class="slide-badge-wrapper" id="slide-badge-wrapper">
-                <span class="slide-badge" contenteditable="true" spellcheck="false" id="slide-badge" data-placeholder="ANNOUNCEMENT">IMA UK ANNOUNCEMENT</span>
+                <span class="slide-badge" contenteditable="true" spellcheck="false" id="slide-badge" data-placeholder="NGO ANNOUNCEMENT">IMA UK • MEDICAL NGO</span>
               </div>
             </header>
 
             <!-- Slide Main Body: Headline & Subtitle -->
             <div class="slide-body" id="slide-body">
-              <h1 class="slide-title" contenteditable="true" spellcheck="false" id="slide-title" data-placeholder="Enter Headline Here...">Annual Medical Conference 2026</h1>
+              <div class="slide-accent-divider" id="slide-accent-divider"></div>
+              <h1 class="slide-title font-size-balanced" contenteditable="true" spellcheck="false" id="slide-title" data-placeholder="Enter Headline Here...">Annual Medical Conference 2026</h1>
               <p class="slide-subtitle" contenteditable="true" spellcheck="false" id="slide-subtitle" data-placeholder="Enter description or key takeaways here...">Join distinguished healthcare leaders, researchers, and clinicians across the UK & Europe for groundbreaking sessions, networking, and medical innovation.</p>
 
               <!-- Dynamic Modular Block (Template-based) -->
@@ -139,6 +142,8 @@
                 <span class="footer-handle" contenteditable="true" spellcheck="false" id="footer-handle">@IMA_UK_Europe</span>
                 <span class="footer-sep">•</span>
                 <span class="footer-url" contenteditable="true" spellcheck="false" id="footer-url">ima-uk.org</span>
+                <span class="footer-sep">•</span>
+                <span class="footer-ngo-tag" contenteditable="true" spellcheck="false" id="footer-ngo-tag" data-i18n="footerNgoTag">UK Registered Medical NGO</span>
               </div>
 
               <!-- Carousel Slide Indicator (Only active in carousel mode) -->
@@ -150,6 +155,7 @@
 
           </div><!-- /artboard-content -->
         </div><!-- /artboard -->
+        </div><!-- /canvas-scaler-box -->
 
         <!-- Carousel On-Canvas Navigation Arrows -->
         <button class="canvas-nav-arrow nav-prev carousel-only" id="btn-prev-slide" title="Previous Slide" disabled>
@@ -195,27 +201,151 @@
     ============================================================ -->
     <aside class="control-panel" id="control-panel">
       
+      <!-- Mobile Drawer Drag Handle & Close Bar -->
+      <div class="mobile-drawer-bar" id="mobile-drawer-bar">
+        <div class="drawer-drag-pill"></div>
+        <div class="drawer-header-row">
+          <span class="drawer-title" id="drawer-title-label">Edit Options</span>
+          <button class="btn-drawer-close" id="btn-drawer-close" title="Close Panel">✕</button>
+        </div>
+      </div>
+      
       <!-- Control Panel Tabs -->
       <nav class="panel-tabs" role="tablist">
-        <button class="panel-tab active" data-tab="style" role="tab" title="Colors & Background">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
-          <span data-i18n="tabStyle">Style</span>
-        </button>
-        <button class="panel-tab" data-tab="layout" role="tab" title="Layout Templates">
+        <button class="panel-tab active" data-tab="layout" role="tab" title="Templates & NGO Badges">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-          <span data-i18n="tabLayout">Layout</span>
+          <span data-i18n="tabLayout">Templates</span>
         </button>
-        <button class="panel-tab" data-tab="brand" role="tab" title="Official Brand Identity">
+        <button class="panel-tab" data-tab="style" role="tab" title="Colors & Background">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span data-i18n="tabStyle">Colors & BG</span>
+        </button>
+        <button class="panel-tab" data-tab="brand" role="tab" title="Official Brand Identity & Logo">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span data-i18n="tabBrand">Brand</span>
+          <span data-i18n="tabBrand">NGO Brand</span>
         </button>
       </nav>
 
       <!-- Panel Tab Contents -->
       <div class="panel-content-area">
 
-        <!-- TAB 1: STYLE & BACKGROUND -->
-        <div class="tab-pane active" id="pane-style">
+        <!-- TAB 1: LAYOUT & NGO TEMPLATES -->
+        <div class="tab-pane active" id="pane-layout">
+          
+          <!-- NGO Category Badge Quick Presets -->
+          <div class="control-section">
+            <label class="section-title">
+              <span data-i18n="ngoBadgesTitle">NGO Category Tag</span>
+              <span class="badge-optional" data-i18n="quickSelect">Quick Select</span>
+            </label>
+            <div class="badge-quick-pills" id="badge-quick-pills">
+              <button class="badge-pill-chip active" data-badge="IMA UK • MEDICAL NGO">🏥 Medical NGO</button>
+              <button class="badge-pill-chip" data-badge="HUMANITARIAN RELIEF">🌍 Humanitarian Relief</button>
+              <button class="badge-pill-chip" data-badge="NGO ANNOUNCEMENT">📢 NGO Announcement</button>
+              <button class="badge-pill-chip" data-badge="COMMUNITY HEALTHCARE">🩺 Community Health</button>
+              <button class="badge-pill-chip" data-badge="MEDICAL TRAINING & CPD">🎓 Medical Training</button>
+              <button class="badge-pill-chip" data-badge="CHARITY INITIATIVE">🤝 Charity Initiative</button>
+            </div>
+          </div>
+
+          <!-- Slide Templates -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="slideTemplate">Slide Template</label>
+            <div class="template-selector-grid">
+              
+              <button class="template-btn active" data-template="layout-announcement">
+                <div class="tpl-icon">📢</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplAnnouncement">NGO Announcement</strong>
+                  <span data-i18n="tplAnnouncementDesc">Title, subtitle, and badge</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-humanitarian">
+                <div class="tpl-icon">🌍</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplHumanitarian">Humanitarian Mission</strong>
+                  <span data-i18n="tplHumanitarianDesc">Relief project, region & stats</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-stats">
+                <div class="tpl-icon">📊</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplStats">Impact & Numbers</strong>
+                  <span data-i18n="tplStatsDesc">3 bold NGO stat counters</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-event">
+                <div class="tpl-icon">📅</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplEvent">Conference / Training</strong>
+                  <span data-i18n="tplEventDesc">Date, venue, & CPD badges</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-checklist">
+                <div class="tpl-icon">✅</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplKeyPoints">Objectives / Agenda</strong>
+                  <span data-i18n="tplKeyPointsDesc">3 bulleted highlight cards</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-quote">
+                <div class="tpl-icon">💬</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplQuote">Leadership Message</strong>
+                  <span data-i18n="tplQuoteDesc">Statement & author attribution</span>
+                </div>
+              </button>
+
+              <button class="template-btn" data-template="layout-outro">
+                <div class="tpl-icon">🚀</div>
+                <div class="tpl-meta">
+                  <strong data-i18n="tplOutro">Support & Join NGO</strong>
+                  <span data-i18n="tplOutroDesc">Membership, donate & contact</span>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Headline Text Size / Presence -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="headlineSize">Headline Scale</label>
+            <div class="btn-segmented">
+              <button class="segment-btn" data-size="font-size-compact" data-i18n="sizeCompact">Compact</button>
+              <button class="segment-btn active" data-size="font-size-balanced" data-i18n="sizeBalanced">Balanced</button>
+              <button class="segment-btn" data-size="font-size-hero" data-i18n="sizeHero">Hero (Big)</button>
+            </div>
+          </div>
+
+          <!-- Visibility Toggles -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="elementsVisibility">Elements</label>
+            <div class="toggle-list">
+              <label class="toggle-row">
+                <span data-i18n="showBadgeToggle">Category Tag Badge</span>
+                <input type="checkbox" id="toggle-badge" checked class="custom-switch">
+              </label>
+              <label class="toggle-row">
+                <span data-i18n="showNgoLockupToggle">NGO Subtitle next to Logo</span>
+                <input type="checkbox" id="toggle-ngo-lockup" checked class="custom-switch">
+              </label>
+              <label class="toggle-row">
+                <span data-i18n="showFooterToggle">Footer & Handles</span>
+                <input type="checkbox" id="toggle-footer" checked class="custom-switch">
+              </label>
+            </div>
+          </div>
+
+        </div><!-- /pane-layout -->
+
+
+        <!-- TAB 2: STYLE & BACKGROUND -->
+        <div class="tab-pane" id="pane-style">
           
           <!-- Background Image Upload -->
           <div class="control-section">
@@ -259,27 +389,21 @@
           <div class="control-section">
             <label class="section-title" data-i18n="brandColorTheme">Brand Color Themes</label>
             <div class="theme-presets-grid" id="theme-presets-grid">
-              <!-- Preset 1: IMA Royal Navy -->
               <button class="theme-chip active" data-theme="theme-royal-navy" style="--chip-bg: linear-gradient(135deg, #00336a, #001a35);" title="IMA Deep Navy">
                 <span class="theme-name">Royal Navy</span>
               </button>
-              <!-- Preset 2: Signature Dual (Navy to Teal) -->
               <button class="theme-chip" data-theme="theme-signature-dual" style="--chip-bg: linear-gradient(135deg, #00336a, #069e85);" title="Signature Navy & Teal">
                 <span class="theme-name">Dual Brand</span>
               </button>
-              <!-- Preset 3: Clinical Emerald Teal -->
               <button class="theme-chip" data-theme="theme-clinical-teal" style="--chip-bg: linear-gradient(135deg, #069e85, #024b3f);" title="Clinical Teal">
                 <span class="theme-name">Emerald Teal</span>
               </button>
-              <!-- Preset 4: Midnight Dark -->
               <button class="theme-chip" data-theme="theme-midnight-dark" style="--chip-bg: #021220;" title="Midnight Dark">
                 <span class="theme-name">Midnight</span>
               </button>
-              <!-- Preset 5: Clean Medical White -->
               <button class="theme-chip" data-theme="theme-clean-white" style="--chip-bg: #ffffff; --chip-border: #cbd5e1; --chip-text: #00336a;" title="Clean White">
                 <span class="theme-name">Clean White</span>
               </button>
-              <!-- Preset 6: Deep Oceanic Glow -->
               <button class="theme-chip" data-theme="theme-oceanic-glow" style="--chip-bg: radial-gradient(circle at top right, #069e85 0%, #00264d 85%);" title="Oceanic Glow">
                 <span class="theme-name">Teal Glow</span>
               </button>
@@ -289,94 +413,36 @@
         </div><!-- /pane-style -->
 
 
-        <!-- TAB 2: LAYOUT & TEMPLATES -->
-        <div class="tab-pane" id="pane-layout">
-          
-          <div class="control-section">
-            <label class="section-title" data-i18n="slideTemplate">Slide Template</label>
-            <div class="template-selector-grid">
-              
-              <button class="template-btn active" data-template="layout-announcement">
-                <div class="tpl-icon">📢</div>
-                <div class="tpl-meta">
-                  <strong data-i18n="tplAnnouncement">Announcement</strong>
-                  <span data-i18n="tplAnnouncementDesc">Title, subtitle, and badge</span>
-                </div>
-              </button>
-
-              <button class="template-btn" data-template="layout-event">
-                <div class="tpl-icon">📅</div>
-                <div class="tpl-meta">
-                  <strong data-i18n="tplEvent">Event / Meeting</strong>
-                  <span data-i18n="tplEventDesc">Date, venue, & time badges</span>
-                </div>
-              </button>
-
-              <button class="template-btn" data-template="layout-checklist">
-                <div class="tpl-icon">✅</div>
-                <div class="tpl-meta">
-                  <strong data-i18n="tplKeyPoints">Key Points / Agenda</strong>
-                  <span data-i18n="tplKeyPointsDesc">3 bulleted highlight cards</span>
-                </div>
-              </button>
-
-              <button class="template-btn" data-template="layout-quote">
-                <div class="tpl-icon">💬</div>
-                <div class="tpl-meta">
-                  <strong data-i18n="tplQuote">Quote / Statement</strong>
-                  <span data-i18n="tplQuoteDesc">Key quotation and author</span>
-                </div>
-              </button>
-
-              <button class="template-btn" data-template="layout-outro">
-                <div class="tpl-icon">🚀</div>
-                <div class="tpl-meta">
-                  <strong data-i18n="tplOutro">Call to Action</strong>
-                  <span data-i18n="tplOutroDesc">Register, follow, & contact</span>
-                </div>
-              </button>
-
-            </div>
-          </div>
-
-          <!-- Visibility Toggles -->
-          <div class="control-section">
-            <label class="section-title" data-i18n="elementsVisibility">Elements</label>
-            <div class="toggle-list">
-              <label class="toggle-row">
-                <span data-i18n="showBadgeToggle">Category Tag Badge</span>
-                <input type="checkbox" id="toggle-badge" checked class="custom-switch">
-              </label>
-              <label class="toggle-row">
-                <span data-i18n="showFooterToggle">Footer & Handles</span>
-                <input type="checkbox" id="toggle-footer" checked class="custom-switch">
-              </label>
-            </div>
-          </div>
-
-        </div><!-- /pane-layout -->
-
-
         <!-- TAB 3: OFFICIAL BRAND IDENTITY -->
         <div class="tab-pane" id="pane-brand">
           
           <!-- Logo Selection -->
           <div class="control-section">
-            <label class="section-title" data-i18n="officialLogo">Official Logo</label>
+            <label class="section-title" data-i18n="officialLogo">Official NGO Logo</label>
             <div class="logo-variants-grid">
               
-              <button class="logo-choice-btn active" data-logo="assets/logos/ima-crest.png" title="Official Gold/Navy Crest">
-                <img src="assets/logos/ima-crest.png" alt="Official Crest">
+              <button class="logo-choice-btn active" data-logo="assets/logos/ima-crest-clean.png" title="Official Gold/Navy Crest">
+                <img src="assets/logos/ima-crest-clean.png" alt="Official Crest">
                 <span>IMA Crest</span>
               </button>
 
-              <button class="logo-choice-btn" data-logo="assets/logos/logo-full.png" title="Full Brand Logo">
-                <img src="assets/logos/logo-full.png" alt="Full Logo">
+              <button class="logo-choice-btn" data-logo="assets/logos/ima-crest-white.png" title="White Monochrome Crest">
+                <img src="assets/logos/ima-crest-white.png" alt="White Crest" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+                <span>White Crest</span>
+              </button>
+
+              <button class="logo-choice-btn" data-logo="assets/logos/logo-full-clean.png" title="Full Brand Logo">
+                <img src="assets/logos/logo-full-clean.png" alt="Full Logo">
                 <span>Brand Mark</span>
               </button>
 
-              <button class="logo-choice-btn" data-logo="assets/logos/logo-emblem.png" title="Emblem Mark">
-                <img src="assets/logos/logo-emblem.png" alt="Emblem">
+              <button class="logo-choice-btn" data-logo="assets/logos/logo-white.png" title="Crisp White Emblem">
+                <img src="assets/logos/logo-white.png" alt="White Emblem" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+                <span>White Emblem</span>
+              </button>
+
+              <button class="logo-choice-btn" data-logo="assets/logos/logo-emblem-clean.png" title="Color Emblem">
+                <img src="assets/logos/logo-emblem-clean.png" alt="Emblem">
                 <span>Emblem</span>
               </button>
 
@@ -385,6 +451,17 @@
                 <span>None</span>
               </button>
 
+            </div>
+          </div>
+
+          <!-- Logo Size Control -->
+          <div class="control-section">
+            <label class="section-title" data-i18n="logoSizeLabel">Logo Size</label>
+            <div class="btn-segmented" id="logo-size-segmented">
+              <button class="segment-btn" data-logosize="logo-size-small" data-i18n="sizeSmall">Small</button>
+              <button class="segment-btn active" data-logosize="logo-size-medium" data-i18n="sizeMedium">Medium</button>
+              <button class="segment-btn" data-logosize="logo-size-large" data-i18n="sizeLarge">Large</button>
+              <button class="segment-btn" data-logosize="logo-size-hero" data-i18n="sizeHero">Hero</button>
             </div>
           </div>
 
@@ -401,7 +478,8 @@
           <!-- Brand Information Note -->
           <div class="brand-note-card">
             <strong>Iraqi Medical Association UK & Europe</strong>
-            <p>Font: <code>Sora</code> (Latin & Arabic) • Primary: <code>#00336a</code> • Teal: <code>#069e85</code></p>
+            <p><strong>Status:</strong> Registered Non-Governmental Medical Organisation (NGO)</p>
+            <p>Font: <code>Sora</code> (EN & AR) • Navy: <code>#00336a</code> • Teal: <code>#069e85</code></p>
           </div>
 
         </div><!-- /pane-brand -->
@@ -409,6 +487,9 @@
       </div><!-- /panel-content-area -->
 
     </aside><!-- /control-panel -->
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="drawer-backdrop hidden" id="drawer-backdrop"></div>
 
   </main>
 
@@ -421,17 +502,17 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
       <span>Canvas</span>
     </button>
+    <button class="dock-btn" data-mobile-tab="layout" id="dock-btn-layout">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <span>Templates</span>
+    </button>
     <button class="dock-btn" data-mobile-tab="style" id="dock-btn-style">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
       <span>Style</span>
     </button>
-    <button class="dock-btn" data-mobile-tab="layout" id="dock-btn-layout">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-      <span>Layout</span>
-    </button>
     <button class="dock-btn" data-mobile-tab="brand" id="dock-btn-brand">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span>Brand</span>
+      <span>NGO Brand</span>
     </button>
     <button class="dock-btn highlight" id="dock-btn-export">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -446,9 +527,9 @@
   <div class="welcome-modal-overlay" id="welcome-modal">
     <div class="welcome-modal-card">
       <div class="welcome-header">
-        <img src="assets/logos/ima-crest.png" alt="IMA UK Crest" class="welcome-crest">
+        <img src="assets/logos/ima-crest-clean.png" alt="IMA UK Crest" class="welcome-crest">
         <h2>IMA UK Media Studio</h2>
-        <p>Create professional branded social posters & swipeable carousels in seconds.</p>
+        <p>Official graphics studio for the Iraqi Medical Association UK & Europe (Registered Medical NGO).</p>
       </div>
 
       <div class="mode-cards-grid">
@@ -460,10 +541,10 @@
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           </div>
           <h3>Poster Maker</h3>
-          <p>Design single announcements, event flyers, executive quotes, and key news.</p>
+          <p>Design single announcements, humanitarian campaigns, relief missions, and key updates.</p>
           <ul class="card-feature-list">
             <li>✓ 1 High-Impact Slide</li>
-            <li>✓ Instant PNG Export</li>
+            <li>✓ Ultra-Crisp PNG Export</li>
             <li>✓ 1:1 Square & 4:5 Portrait</li>
           </ul>
           <button class="btn btn-primary btn-block">Start Poster Maker ➔</button>
@@ -476,7 +557,7 @@
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="13" height="18" rx="2.5"/><rect x="9" y="3" width="13" height="18" rx="2.5"/></svg>
           </div>
           <h3>Carousel Maker</h3>
-          <p>Create swipeable educational posts, meeting recaps, agendas, and stories.</p>
+          <p>Create swipeable educational guides, medical training curriculums, and NGO stories.</p>
           <ul class="card-feature-list">
             <li>✓ Multiple Slides (2 to 10)</li>
             <li>✓ Slide Counter (01/05) & Swipes</li>
@@ -501,7 +582,7 @@
     <div class="export-dialog">
       <div class="spinner-ring"></div>
       <h3 id="export-status-title">Generating High-Resolution Media...</h3>
-      <p id="export-status-desc">Rendering crisp 1080px brand graphics</p>
+      <p id="export-status-desc">Rendering crisp 2160px edge-to-edge brand graphic</p>
       <div class="export-progress-bar">
         <div class="progress-fill" id="export-progress-fill"></div>
       </div>
