@@ -1990,19 +1990,30 @@ body.lang-ar .slide-header.logo-pos-top-right {
 
   /* Header Optimization */
   .app-header {
-    height: 52px;
-    padding: 0 0.5rem;
-    gap: 0.35rem;
+    height: 50px;
+    padding: 0 0.4rem;
+    gap: 0.25rem;
     justify-content: space-between;
+    overflow: hidden;
   }
 
   .export-group {
     display: none !important;
   }
 
+  .header-left {
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .brand-badge {
+    padding: 2px 4px;
+    gap: 5px;
+  }
+
   .brand-crest {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .brand-titles {
@@ -2010,7 +2021,8 @@ body.lang-ar .slide-header.logo-pos-top-right {
   }
 
   .brand-name {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
+    font-weight: 800;
   }
 
   .brand-product {
@@ -2020,27 +2032,49 @@ body.lang-ar .slide-header.logo-pos-top-right {
   .mode-pill-container {
     padding: 2px;
     gap: 2px;
+    flex-shrink: 0;
   }
 
   .mode-pill {
-    padding: 4px 8px;
-    font-size: 0.72rem;
+    padding: 3px 7px;
+    font-size: 0.68rem;
+    gap: 3px;
+  }
+
+  .mode-pill svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .header-right {
     gap: 4px;
+    flex-shrink: 0;
   }
 
   .ratio-toggle {
-    padding: 2px;
+    padding: 1px;
+    flex-shrink: 0;
   }
 
   .ratio-btn {
-    padding: 4px 6px;
-    font-size: 0.7rem;
+    padding: 3px 5px;
+    font-size: 0.68rem;
   }
 
   .lang-toggle-btn {
-    padding: 4px 7px;
+    padding: 3px 7px;
     font-size: 0.72rem;
-    gap: 4px;
+    font-weight: 700;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .lang-arrow {
+    display: none !important;
+  }
+
+  .lang-indicator {
+    display: none !important;
   }
 
   /* Workspace & Stage */
@@ -2225,25 +2259,32 @@ body.lang-ar .slide-header.logo-pos-top-right {
 }
 
 @media (max-width: 380px) {
-  .mode-pill span {
-    display: none;
+  .app-header {
+    padding: 0 0.25rem;
+    gap: 0.2rem;
+  }
+
+  .brand-name {
+    font-size: 0.82rem;
+  }
+
+  .brand-crest {
+    width: 22px;
+    height: 22px;
   }
 
   .mode-pill {
-    padding: 4px 6px;
+    padding: 3px 5px;
+    font-size: 0.65rem;
   }
 
   .ratio-btn {
-    padding: 4px 5px;
-    font-size: 0.68rem;
+    padding: 3px 4px;
+    font-size: 0.65rem;
   }
 
   .lang-toggle-btn {
-    padding: 4px 5px;
+    padding: 3px 5px;
     font-size: 0.68rem;
-  }
-
-  .lang-alt {
-    display: none;
   }
 }
