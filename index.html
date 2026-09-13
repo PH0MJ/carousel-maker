@@ -354,6 +354,22 @@
               <span class="badge-optional" data-i18n="optionalBadge">Optional</span>
             </label>
             
+            <!-- Carousel Apply Scope Toggle (Visible in Carousel Mode) -->
+            <div class="bg-scope-container carousel-only" id="bg-scope-container">
+              <div class="bg-scope-header">
+                <span class="bg-scope-label" data-i18n="bgApplyLabel">Apply Photo To:</span>
+                <span class="bg-scope-active-tag" id="bg-scope-active-tag">Slide 1 only</span>
+              </div>
+              <div class="btn-segmented bg-scope-segmented" id="bg-scope-segmented">
+                <button type="button" class="segment-btn active" data-bgscope="current" id="btn-scope-current">
+                  <span data-i18n="bgScopeCurrent">This Slide Only</span>
+                </button>
+                <button type="button" class="segment-btn" data-bgscope="all" id="btn-scope-all">
+                  <span data-i18n="bgScopeAll">All Slides</span>
+                </button>
+              </div>
+            </div>
+
             <div class="upload-box-wrapper">
               <input type="file" id="input-bg-upload" accept="image/*" class="sr-only">
               <label for="input-bg-upload" class="upload-dropzone" id="upload-dropzone">

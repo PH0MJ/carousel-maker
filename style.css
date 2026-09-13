@@ -1298,6 +1298,54 @@ body.lang-ar .slide-header.logo-pos-top-right {
   border-radius: 4px;
 }
 
+/* Background Image Scope Selector (Carousel Mode) */
+.bg-scope-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--ima-border);
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+}
+
+.bg-scope-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bg-scope-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.bg-scope-active-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ima-teal-light);
+  background: rgba(6, 158, 133, 0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(6, 158, 133, 0.35);
+}
+
+.bg-scope-segmented {
+  width: 100%;
+}
+
+.bg-scope-segmented .segment-btn {
+  padding: 6px 8px;
+  font-size: 0.74rem;
+}
+
+.bg-scope-segmented .segment-btn.active {
+  background: var(--ima-teal);
+  color: #ffffff;
+}
+
 .upload-dropzone {
   border: 2px dashed rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-md);
@@ -1617,9 +1665,11 @@ body.lang-ar .slide-header.logo-pos-top-right {
   background: rgba(0, 0, 0, 0.3);
   padding: 1px 4px;
   border-radius: 4px;
-/* Mobile Drawer Handle & Bar */
+}
+
+/* Mobile Drawer Handle & Bar (Hidden on Desktop) */
 .mobile-drawer-bar {
-  display: none;
+  display: none !important;
   flex-direction: column;
   align-items: center;
   padding: 8px 12px 6px;
@@ -2023,7 +2073,7 @@ body.lang-ar .slide-header.logo-pos-top-right {
 
   /* Mobile Drawer Bottom Sheet */
   .mobile-drawer-bar {
-    display: flex;
+    display: flex !important;
   }
 
   .control-panel {

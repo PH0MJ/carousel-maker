@@ -25,6 +25,9 @@
       tabLayout: 'Templates',
       tabBrand: 'NGO Brand',
       bgImageTitle: 'Background Photo',
+      bgApplyLabel: 'Apply Photo To:',
+      bgScopeCurrent: 'This Slide Only',
+      bgScopeAll: 'All Slides',
       optionalBadge: 'Optional',
       quickSelect: 'Quick Select',
       uploadClickText: 'Upload background image',
@@ -112,6 +115,9 @@
       tabLayout: 'القوالب',
       tabBrand: 'هوية المنظمة',
       bgImageTitle: 'صورة الخلفية',
+      bgApplyLabel: 'تطبيق الصورة على:',
+      bgScopeCurrent: 'هذه الشريحة فقط',
+      bgScopeAll: 'جميع الشرائح',
       optionalBadge: 'اختياري',
       quickSelect: 'اختيار سريع',
       uploadClickText: 'انقر لرفع صورة الخلفية',
@@ -196,6 +202,7 @@
     lang: 'en', // 'en' | 'ar'
     theme: 'theme-royal-navy',
     bgImage: null,
+    bgImageScope: 'current', // 'current' | 'all'
     bgOverlayDarkness: 45, // 0 - 90 %
     logoSrc: 'assets/logos/ima-crest-clean.png',
     logoPos: 'logo-pos-top-left',
@@ -214,6 +221,8 @@
     const t = I18N[lang];
     return {
       template,
+      bgImage: null,
+      bgFileName: '',
       badge: t.defaultBadge,
       title: t.defaultTitle,
       subtitle: t.defaultSubtitle,
@@ -319,6 +328,11 @@
     badgeQuickPills: document.getElementById('badge-quick-pills'),
 
     // Style Tab Controls
+    bgScopeContainer: document.getElementById('bg-scope-container'),
+    bgScopeActiveTag: document.getElementById('bg-scope-active-tag'),
+    bgScopeBtns: document.querySelectorAll('[data-bgscope]'),
+    btnScopeCurrent: document.getElementById('btn-scope-current'),
+    btnScopeAll: document.getElementById('btn-scope-all'),
     inputBgUpload: document.getElementById('input-bg-upload'),
     uploadDropzone: document.getElementById('upload-dropzone'),
     uploadPreviewBar: document.getElementById('upload-preview-bar'),
@@ -487,6 +501,9 @@
     // Update ratio classes
     DOM.artboard.classList.toggle('ratio-portrait', state.ratio === 'portrait');
     DOM.artboard.classList.toggle('ratio-square', state.ratio === 'square');
+
+    // Update background photo & overlay for current slide
+    updateBackground();
   }
 
   // Render modular blocks based on template
@@ -653,6 +670,15 @@
     state.slides.forEach((slide, idx) => {
       const thumb = document.createElement('div');
       thumb.className = `carousel-thumb-card ${idx === state.currentSlideIndex ? 'active' : ''}`;
+
+      if (slide.bgImage) {
+        thumb.style.backgroundImage = `linear-gradient(rgba(2, 18, 32, 0.45), rgba(2, 18, 32, 0.65)), url(${slide.bgImage})`;
+        thumb.style.backgroundSize = 'cover';
+        thumb.style.backgroundPosition = 'center';
+      } else {
+        thumb.style.backgroundImage = 'none';
+      }
+
       thumb.innerHTML = `<span>${idx + 1}</span>`;
       thumb.title = `Slide ${idx + 1}: ${slide.template.replace('layout-', '')}`;
       thumb.addEventListener('click', () => {
@@ -711,13 +737,18 @@
   }
 
   function updateBackground() {
-    if (state.bgImage) {
-      DOM.artboardBgMedia.style.backgroundImage = `url(${state.bgImage})`;
+    const currentSlide = state.slides[state.currentSlideIndex];
+    const bg = currentSlide ? currentSlide.bgImage : state.bgImage;
+
+    if (bg) {
+      DOM.artboardBgMedia.style.backgroundImage = `url(${bg})`;
       DOM.uploadPreviewBar.classList.remove('hidden');
-      DOM.uploadThumbPreview.style.backgroundImage = `url(${state.bgImage})`;
+      DOM.uploadThumbPreview.style.backgroundImage = `url(${bg})`;
+      DOM.uploadFileName.textContent = (currentSlide && currentSlide.bgFileName) || 'image.jpg';
     } else {
       DOM.artboardBgMedia.style.backgroundImage = 'none';
       DOM.uploadPreviewBar.classList.add('hidden');
+      DOM.uploadThumbPreview.style.backgroundImage = 'none';
     }
 
     const opacity = state.bgOverlayDarkness / 100;
@@ -727,6 +758,25 @@
 
     DOM.sliderOverlay.value = state.bgOverlayDarkness;
     DOM.overlayValueDisplay.textContent = `${state.bgOverlayDarkness}%`;
+
+    // Sync Carousel Scope Selector UI
+    if (DOM.bgScopeBtns) {
+      DOM.bgScopeBtns.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-bgscope') === state.bgImageScope);
+      });
+    }
+
+    if (DOM.bgScopeActiveTag) {
+      if (state.bgImageScope === 'all') {
+        DOM.bgScopeActiveTag.textContent = state.lang === 'ar'
+          ? `جميع الشرائح (${state.slides.length})`
+          : `All ${state.slides.length} slides`;
+      } else {
+        DOM.bgScopeActiveTag.textContent = state.lang === 'ar'
+          ? `الشريحة ${state.currentSlideIndex + 1} فقط`
+          : `Slide ${state.currentSlideIndex + 1} only`;
+      }
+    }
   }
 
   // ============================================================
@@ -901,6 +951,14 @@
     const templates = ['layout-announcement', 'layout-humanitarian', 'layout-stats', 'layout-event', 'layout-checklist', 'layout-quote', 'layout-outro'];
     const tpl = templates[state.slides.length % templates.length];
     const newSlide = createDefaultSlide(tpl, state.lang);
+
+    if (state.bgImageScope === 'all') {
+      const existingWithBg = state.slides.find(s => s.bgImage);
+      if (existingWithBg) {
+        newSlide.bgImage = existingWithBg.bgImage;
+        newSlide.bgFileName = existingWithBg.bgFileName;
+      }
+    }
 
     state.slides.push(newSlide);
     state.currentSlideIndex = state.slides.length - 1;
@@ -1293,11 +1351,54 @@
       }
     });
 
+    // Carousel Background Scope Selector (This Slide Only vs All Slides)
+    if (DOM.bgScopeBtns) {
+      DOM.bgScopeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const scope = btn.getAttribute('data-bgscope');
+          state.bgImageScope = scope;
+          DOM.bgScopeBtns.forEach(b => b.classList.toggle('active', b === btn));
+
+          const cur = state.slides[state.currentSlideIndex];
+          if (scope === 'all') {
+            if (cur && cur.bgImage) {
+              state.slides.forEach(s => {
+                s.bgImage = cur.bgImage;
+                s.bgFileName = cur.bgFileName;
+              });
+              updateThumbnails();
+              showToast(state.lang === 'ar' ? 'تم تطبيق الصورة الحالية على جميع الشرائح' : 'Applied photo to all slides');
+            } else {
+              showToast(state.lang === 'ar' ? 'الصور القادمة ستطبق على جميع الشرائح' : 'New uploads will apply to all slides');
+            }
+          } else {
+            showToast(state.lang === 'ar' ? 'تعديل الصور للشريحة الحالية فقط' : 'Photo changes apply to this slide only');
+          }
+          updateBackground();
+        });
+      });
+    }
+
     DOM.btnRemoveBgImg.addEventListener('click', () => {
-      state.bgImage = null;
+      if (state.mode === 'carousel' && state.bgImageScope === 'all') {
+        state.slides.forEach(s => {
+          s.bgImage = null;
+          s.bgFileName = '';
+        });
+        state.bgImage = null;
+        showToast(state.lang === 'ar' ? 'تمت إزالة الصورة من جميع الشرائح' : 'Photo removed from all slides');
+      } else {
+        const cur = state.slides[state.currentSlideIndex];
+        if (cur) {
+          cur.bgImage = null;
+          cur.bgFileName = '';
+        }
+        state.bgImage = null;
+        showToast(state.lang === 'ar' ? 'تمت إزالة الصورة من هذه الشريحة' : 'Photo removed from this slide');
+      }
       DOM.inputBgUpload.value = '';
       updateBackground();
-      showToast('Background photo removed');
+      updateThumbnails();
     });
 
     // Darkness Overlay Slider
@@ -1437,10 +1538,27 @@
 
     const reader = new FileReader();
     reader.onload = (e) => {
-      state.bgImage = e.target.result;
+      const dataUrl = e.target.result;
+      state.bgImage = dataUrl;
+
+      if (state.mode === 'carousel' && state.bgImageScope === 'all') {
+        state.slides.forEach(s => {
+          s.bgImage = dataUrl;
+          s.bgFileName = file.name;
+        });
+        showToast(state.lang === 'ar' ? 'تم تطبيق الصورة على جميع الشرائح' : 'Photo applied to all slides');
+      } else {
+        const cur = state.slides[state.currentSlideIndex];
+        if (cur) {
+          cur.bgImage = dataUrl;
+          cur.bgFileName = file.name;
+        }
+        showToast(state.lang === 'ar' ? 'تم تطبيق الصورة على هذه الشريحة' : 'Photo applied to this slide');
+      }
+
       DOM.uploadFileName.textContent = file.name;
       updateBackground();
-      showToast('Background image loaded');
+      updateThumbnails();
     };
     reader.readAsDataURL(file);
   }
